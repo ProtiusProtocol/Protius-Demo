@@ -1,5 +1,4 @@
 //const { json } = require("body-parser");
-alert("Page working");
 
 document.addEventListener('DOMContentLoaded', () => {
     
