@@ -10,17 +10,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // GET Request to display the main page
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/pages/index.html'));
+    res.sendFile(path.join(__dirname, '/public/pages/index.html'));
 })
 
 // GET Request to display the dao page
 app.get('/dao', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/pages/dao.html'));
+    res.sendFile(path.join(__dirname, '/public/pages/dao.html'));
 })
 
 // GET Request to display the trade page
 app.get('/trade', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/pages/trade.html'));
+    res.sendFile(path.join(__dirname, '/public/pages/trade.html'));
 })
 
 // Listening on the right port
