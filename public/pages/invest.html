@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../styles/dao.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+
+<body id="page_body">
+
+    <!-- Main Content -->
+    <div class="main-content">
+        
+        <!-- Header -->
+        <header id="page_header">
+            <div>
+                <img class="logo" src="../images/protius_protocol_logo.jpg" alt="Logo">
+            </div>
+            <nav>
+                <a href="../pages/index.html">Home</a>
+                <a href="../pages/dao.html">Dao</a>
+                <a href="../pages/invest.html">Invest</a>
+                <a href="../pages/trade.html">Trade</a>  
+                <a href="../pages/index.html">Contact</a>              
+            </nav>
+        </header>
+
+        <div style="height: 1cm;"></div>
+
+        <!-- Header -->       
+        <h1> Invest in Renewable Energy </h1>
+        <p> Invest by staking your tokens. </p>
+
+        <!-- Row 1 -->
+        <div class="row">
+            <h3> Stake Tokens </h3>
+            <p> Stake Tokens for the current round. </p>
+            <form>
+                <input id="tokenInput" placeholder="How many tokens do you want to stake"> 
+            </form>
+            <div style="height: 1cm;"></div>
+            <button id="submitStakeButton"> Stake </button> <button id="cancelStakeButton"> Cancel </button> 
+        </div>
+
+        <hr>
+
+        <!-- Footer -->
+
+        <footer id="page_footer">
+            <p> © Protius Protocol 2025 </p>
+        </footer>
+    </div>
+    <script src="../pages/handleStake.js"></script>
+
+</body>
+</html>
