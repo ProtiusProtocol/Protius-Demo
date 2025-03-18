@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../styles/dao.css">
+    <link rel="stylesheet" href="../styles/drop_down.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 
@@ -34,25 +35,46 @@
         <p> Form to input information about the project lifecycle </p>
 
         <!-- Row 1 -->
-        <div class="row">
-            <h3> Complete a transaction! </h3>
-            <p> Fill out the form below to complete a transaction. </p>
+        <div class="input-section">
+            <form>
+                <div class="form-group">
+                    <label for="titleSelect">Select Content Type:</label>
+                    <select id="titleSelect" name="title">
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="LandTenure">Land Tenure</option>
+                        <option value="ServitueLeeway">Servitue Leeway</option>
+                        <option value="ResourceStudy">Resource Study</option>
+                        <option value="GridConnection">Grid Connection</option>
+                        <option value="GridConnectionAgreement">Grid Connection Agreement</option>
+                        <option value="EnvironmentalReview">Environmental Review</option>
+                        <option value="PublicParticipation">Public Participation</option>
+                        <option value="Permits">Permits</option>
+                        <option value="PowerPurchaseAgreemnet">Power Purchase Agreemnet</option>
+                        <option value="PlantDesign">Plant Design</option>
+                        <option value="EPC">EPC </option>
+                        <option value="DebtProvider">Debt Provider</option>
+                        <option value="EquityProvider">Equity Provider</option>
+                        <option value="FinancialModel">Financial Model</option>
+                        <option value="FinancialModelAudit">Financial Model Audit</option>
+                        <option value="EquipmentSupplier">Equipment Supplier</option>
+                        <option value="RoadsLogisticsPlan">Roads Logistics Plan</option>
+                        <option value="TaxPlan">Tax Plan</option>
+                        <option value="Stakeholders">Stakeholders</option>
+                        <option value="CommunityEngagementPlan">Community Engagement Plan</option>
+                        <option value="AccDevelopmentSpendOnBudget">Development Spend On Budget</option>
+                    </select>
+                </div>
         
-        <div>
-            <form>
-                <label for="name">Land Tenure</label>
-                <input id="senderWalletID" placeholder="Land Tenure">
-            <form>
-            <button id="submitTxnButton"> Submit </button> <button id="cancelTxnButton"> Cancel </button> 
-        </div>
-
-        <div style="height: 1cm;"></div>
-        <div>
-            <form>
-                <label for="name">Land Tenure</label>
-                <input id="senderWalletID" placeholder="Land Tenure">
-            <form>
-            <button id="submitTxnButton"> Submit </button> <button id="cancelTxnButton"> Cancel </button>                 
+                <div class="form-group">
+                    <label for="textInput">Content:</label>
+                    <textarea id="textInput" name="content" rows="4" cols="50" placeholder="Enter your text here"></textarea>
+                </div>
+        
+                <div class="form-group">
+                    <label for="fileInput">Upload File:</label>
+                    <input type="file" id="fileInput" name="file">
+                </div>
+            </form>
         </div>
 
         <hr>
@@ -68,3 +90,4 @@
 
 </body>
 </html>
+
