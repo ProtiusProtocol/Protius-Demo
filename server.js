@@ -18,6 +18,11 @@ app.get('/dao', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/pages/dao.html'));
 })
 
+// GET Request to display the dao page
+app.get('/development', (req, res) => {
+    res.sendFile(path.join(__dirname, '/public/pages/development.html'));
+})
+
 // GET Request to display the trade page
 app.get('/trade', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/pages/trade.html'));

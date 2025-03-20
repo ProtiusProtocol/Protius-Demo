@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Financial Transaction Handler Working');
         
         // Fetch data from HTML and send to transact API 
-        fetch('http://localhost:3000/transact', {
+        fetch('https://ahtiso-dios-test-network-02d729532570.herokuapp.com/transact', {
+        //fetch('http://localhost:3000/api/transaction', {
             method: 'POST',
             headers: {'Content-Type': 'application/json' },
             body: JSON.stringify({ senderWallet, receiverWallet, transactionAmount })

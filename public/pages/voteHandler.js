@@ -9,14 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let undecidedButton = document.getElementById('undecidedButton');
 
     function voteProcess( /*proposalNumber,*/ userVote ){
-        let timeStamp = new Date().toLocaleString();
         console.log('User voted:', userVote, 'to Proposal');
 
         // For all Dapps, this fetch should connect to blockchain backend
-        fetch('http://localhost:3000/vote', {
-            method: 'POST',
+        fetch('https://ahtiso-dios-test-network-02d729532570.herokuapp.com/api/vote', {
+        //fetch('http://localhost:3000/api/vote', {
+                method: 'POST',
             headers: {'Content-Type': 'application/json' },
-            body: JSON.stringify({ timeStamp, userVote })
+            body: JSON.stringify({ userVote })
         })
     }
 

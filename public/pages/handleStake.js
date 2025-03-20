@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('First point of log',tokens)
         
         // Fetch data from HTML and send to transact API 
-        fetch('http://localhost:3000/api/staketoken', {
+        fetch('https://ahtiso-dios-test-network-02d729532570.herokuapp.com/api/staketoken', {
             method: 'POST',
             headers: {'Content-Type': 'application/json' },
             body: JSON.stringify({ tokens })
