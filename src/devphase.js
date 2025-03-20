@@ -1,8 +1,9 @@
 
 
 class ProjectDevelopmentPhase {
-    constructor ( input ){
-        this.input = this.input
+    constructor ({ }){
+        this.input = input
+        this.projectID = projectID
     }
     
     verifyLandTenure(){
@@ -90,6 +91,6 @@ class ProjectDevelopmentPhase {
     }
 
     completeDevelopmentPhase(){
-        
+
     }
 }
