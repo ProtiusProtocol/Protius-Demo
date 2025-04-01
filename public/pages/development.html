@@ -20,11 +20,12 @@
                 <img class="logo" src="../images/protius_protocol_logo.jpg" alt="Logo">
             </div>
             <nav>
-                <a href="../pages/index.html">Home</a>
-                <a href="../pages/dao.html">Dao</a>
-                <a href="../pages/invest.html">Invest</a>
-                <a href="../pages/trade.html">Trade</a>  
-                <a href="../pages/index.html">Contact</a>              
+                <a href="/">Home</a>
+                <a href="dao">Dao</a>
+                <a href="development">Development</a>
+                <a href="invest">Invest</a>
+                <a href="trade">Trade</a>  
+                <a href="/">Contact</a>              
             </nav>
         </header>
 
@@ -42,7 +43,7 @@
                     <select id="titleSelect" name="title">
                         <option value="" disabled selected>Select an option</option>
                         <option value="LandTenure">Land Tenure</option>
-                        <option value="ServitueLeeway">Servitue Leeway</option>
+                        <option value="ServitudeLeeway">Servitude Leeway</option>
                         <option value="ResourceStudy">Resource Study</option>
                         <option value="GridConnection">Grid Connection</option>
                         <option value="GridConnectionAgreement">Grid Connection Agreement</option>
@@ -75,6 +76,9 @@
                     <input type="file" id="fileInput" name="file">
                 </div>
             </form>
+
+            <button id="submitPhaseButton"> Submit </button> <button id="cancelPhaseButton"> Cancel </button> 
+
         </div>
 
         <hr>
@@ -85,8 +89,7 @@
             <p> © Protius Protocol. 2025 </p>
         </footer>
     </div>
-    <script src="./voteHandler.js"></script>
-    <script src="./transactReceiver.js"></script>
+    <script src="./pages/handleDevPhase.js"></script>
 
 </body>
 </html>
