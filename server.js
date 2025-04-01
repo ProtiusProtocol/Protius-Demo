@@ -28,6 +28,18 @@ app.get('/trade', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/pages/trade.html'));
 })
 
+// GET Request to display the trade page
+app.get('/invest', (req, res) => {
+    res.sendFile(path.join(__dirname, '/public/pages/invest.html'));
+})
+
+
+app.post('/api/devphase', (req, res) => {
+    const input = req.body;
+    console.log('API Received:', input);
+})
+
+
 // Listening on the right port
 app.listen(DEFAULT_PORT, () => {
     console.log(`Listening on Localhost: ${DEFAULT_PORT}`);
