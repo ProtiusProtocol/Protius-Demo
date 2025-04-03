@@ -35,8 +35,8 @@ app.get('/invest', (req, res) => {
 
 
 app.post('/api/devphase', (req, res) => {
-    const input = req.body;
-    console.log('API Received:', input);
+    const { title, input } = req.body;
+    console.log('API Received:',title, input);
 })
 
 
