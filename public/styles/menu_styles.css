@@ -1,0 +1,212 @@
+
+.nav-container {
+    background-color: white;
+    padding: 1vw;
+    position: relative; /* Contain absolutely positioned children */
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2vw;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu > li {
+    position: relative;
+}
+
+.nav-menu > li > a {
+    text-decoration: none;
+    color: #333; /* Visible on white background */
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+    display: block;
+    transition: color 0.2s ease;
+}
+
+.nav-menu > li > a:hover {
+    color: #00d4ff;
+}
+
+/* Mega Menu */
+.mega-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    background-color: #fff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+    padding: 0.5vw;
+    z-index: 10;
+    left: 0;
+    min-width: 200px; 
+    max-width: calc(100vw - 2vw); 
+}
+
+.nav-menu > li:hover .mega-menu {
+    display: flex;
+}
+
+/* Flip mega-menu to left if near right edge */
+.nav-menu > li:last-child .mega-menu,
+.nav-menu > li:nth-last-child(2) .mega-menu {
+    left: auto;
+    right: 0;
+}
+
+.mega-menu .left-panel {
+    flex: 1;
+    padding: 0.5vw;
+    border-right: 1px solid #eee;
+}
+
+.mega-menu .left-panel ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mega-menu .left-panel ul li {
+    position: relative;
+}
+
+.mega-menu .left-panel ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+    display: block;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+.mega-menu .left-panel ul li a:hover {
+    background-color: #f0faff;
+    color: #00aaff;
+}
+
+/* Right panel styles */
+.mega-menu .right-panel {
+    display: none;
+    position: absolute;
+    top: 0;
+    width: 200px; /* Fixed width for consistency */
+    padding: 0.5rem;
+    background-color: #fff;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    /* Default to right */
+    left: 100%;
+}
+
+.mega-menu .left-panel li:hover .right-panel {
+    display: block;
+}
+
+/* Flip right-panel to left if it would overflow */
+.mega-menu .left-panel li:hover .right-panel {
+    left: 100%;
+    right: auto;
+}
+
+/* Adjust for edge cases near right side */
+.nav-menu > li:last-child .mega-menu .right-panel,
+.nav-menu > li:nth-last-child(2) .mega-menu .right-panel {
+    left: auto;
+    right: 100%;
+}
+
+.mega-menu .right-panel ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mega-menu .right-panel ul li a {
+    text-decoration: none;
+    color: #666;
+    font-size: 0.95rem;
+    padding: 0.4rem 0;
+    display: block;
+    transition: color 0.2s ease;
+}
+
+.mega-menu .right-panel ul li a:hover {
+    color: rgb(69, 34, 98);
+}
+
+
+
+
+@media (max-width: 768px) {
+
+    .menu {
+        display: flex;
+        width: 100%;
+    }
+    
+}
+
+/*Hide the menu icon on large screens*/
+@media (min-width: 691px) {
+    .menu-toggle {
+        display: none;
+    }
+}
+
+
+@media (max-width: 690px) {
+    .nav-container {
+        display: none;
+    }
+
+    .nav-container.active {
+        display: block; 
+        position: absolute; 
+        top: 50px; 
+        left: 0;
+        width: 100%;
+        background: #fff; 
+        z-index: 1000; 
+    }
+
+    .nav-menu {
+        display: block;
+        text-align: center;
+    }
+
+    .nav-menu > li {
+        display: block;
+    }
+
+    .nav-menu > li > a {
+        display: block;
+        padding: 1vw;
+        color: rgb(69, 34, 98);
+        background-color: #f8f8f8;
+    }
+
+    .menu-toggle {
+        display: block;
+        background-color:#fff;
+        padding: 1.5vw;
+        text-align: center;
+        cursor: pointer;
+        margin-left: auto;
+        border:none;
+        width: 8vw;
+    }
+
+    .mega-menu {
+        display: none;
+    }
+
+    .nav-container.active .nav-menu > li:hover .mega-menu {
+        display: block;
+        position: static;
+        width: 100%;
+        box-shadow: none;
+    }
+}
