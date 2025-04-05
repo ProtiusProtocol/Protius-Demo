@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../styles/dao.css">
+    <link rel="stylesheet" href="../styles/menu_styles.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 
@@ -18,14 +19,7 @@
             <div>
                 <img class="logo" src="../images/protius_protocol_logo.jpg" alt="Logo">
             </div>
-            <nav>
-                <a href="/">Home</a>
-                <a href="dao">Dao</a>
-                <a href="development">Development</a>
-                <a href="invest">Invest</a>
-                <a href="trade">Trade</a>  
-                <a href="/">Contact</a>              
-            </nav>
+            <div id="nav-container"></div>
         </header>
 
         <div style="height: 1cm;"></div>
@@ -65,6 +59,24 @@
     </div>
     <script src="./voteHandler.js"></script>
     <script src="./transactReceiver.js"></script>
+
+    <script>
+        fetch('./pages/menu.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.status);
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById('nav-container').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error loading menu:', error);
+                document.getElementById('nav-container').innerHTML = 'Failed to load menu';
+            });
+    </script>
+
 
 </body>
 </html>
