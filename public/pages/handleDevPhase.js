@@ -26,12 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let htmlInput = document.getElementById('fileInput');
     let title = document.getElementById('titleSelect');
 
-    function sendData ({ title, input }){
+    function sendData ( title, input ){
 
         fetch('http://localhost:4000/api/devphase', {
             method: 'POST',
             headers: {'content-type': 'application/json'},
-            body: JSON.stringify({ title, input })
+            body: JSON.stringify( {title, input} )
         })
 
     }
@@ -43,9 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let userInput = htmlInput.value;
 
         sendData( inputTitle, userInput );
-        console.log('LandTenure', userInput );
+        console.log(inputTitle, userInput );
         alert('Submitted');
-
     });
 
 
@@ -53,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
     cancelButton.addEventListener('click', function () {
         console.log('Process cancelled!');
         alert('Process cancelled!');
-        
     });
 
 });
