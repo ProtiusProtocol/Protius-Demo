@@ -182,6 +182,6 @@ MIT License
 ---
 
 ## 👨‍💻 Authors
-- Peter Oscali - Co-Founder and CEO
+- Peter Oldacre - Co-Founder and CEO
 - Giorgio Mauro - Co-Founder and COO
 - Dr Ugo Ikpeazu – CTO 
