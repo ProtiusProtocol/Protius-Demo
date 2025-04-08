@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () =>{
     // Event listener for the SUBMIT button on HTML page
     createButton.addEventListener('click', function () {
         handleProjectCreation( projectNameHTML.value, projectDeveloperHTML.value );
-        //console.log("Handle Create", projectNameHTML.value, projectDeveloperHTML.value)
         alert('Data addedd successfully');
     });
 
