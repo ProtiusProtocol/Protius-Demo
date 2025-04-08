@@ -1,8 +1,10 @@
 const express = require('express');
 const path = require('path');
 const multer = require('multer');
+const publishData = require('./src/publishData');
 const ProjectDevelopmentPhase = require('./src/devphase');
-const ProjectPool = require('./src/projectPool')
+const ProjectPool = require('./src/projectPool');
+const sampleProject = require('./src/sampleProject');
 
 
 const storage = multer.memoryStorage();
@@ -21,16 +23,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/pages/index.html'));
 })
-
-// GET Request to display the about page
-//app.get('/about', (req, res) => {
-//    res.sendFile(path.join(__dirname, '/public/pages/about.html'));
-//})
-
-// GET Request to display the project page
-//app.get('/project', (req, res) => {
-//    res.sendFile(path.join(__dirname, '/public/pages/project.html'));
-//})
 
 // GET Request to display the project page
 app.get('/create', (req, res) => {
@@ -68,14 +60,25 @@ app.post('/api/createproject', (req, res) => {
     const { newName, newDeveloper } = req.body;
     const newProject = createProject.createNewProject( newName, newDeveloper );
     const updatedProjectPool = newProjectPool.addProject(newProject);
-    console.log("New Project Initiated", newProject);
+    const announceProject = JSON.stringify(newName, newDeveloper);
+    console.log("New Project Initiated", newProject);   
+    console.log("Updated project pool", updatedProjectPool);
 
-    fetch('http://localhost:3000/api/publish', {
+    /*Fetch block below is for publishing to local network via API
+    fetch('http://localhost:3000/api/publish', { //This points to a local instance of another blockchain for dynamic testing
         method: 'POST',
         headers: {'content-type': 'application/json'},
         //body: JSON.stringify( newProject )
         body: JSON.stringify({ updatedProjectPool })
-    }) 
+    }) */
+
+    // Functionality to publish data (new projects) to the stellar testnet
+    try{
+        publishData.publishStellar(JSON.stringify(announceProject));
+    }catch(error){
+        console.error("Error", error)
+    }
+    
 })
 
 // POST request to upload files 
@@ -85,8 +88,28 @@ app.post('/api/devphase', upload.single('document'), (req, res) => {
     }
     const uploadedFile = req.file;
     const title = req.body;
-    console.log('API Received:',title);
-    console.log(uploadedFile);
+
+    // The following is an implementation to show how the programs retreives projects
+    // from the project pool and updates specific information before publishing to the network (if/as needed)
+    const initializeProject = sampleProject.newProject;
+    
+    initializeProject.projectPhases[title.title] = "Completed";
+    console.log("Updated project:", initializeProject);
+
+    const updatedProjectPool = newProjectPool.addProject(initializeProject);
+    console.log("Updated Project Pool:", updatedProjectPool);
+
+    // Depending on our final implementation, we could either emit a message to 
+    // protius to say a step was completed, or publish to the entire network. 
+    // This will be influenced by things like transaction costs.
+    // For now, we will publish to the Stellar testnet
+    const announceUpdate = JSON.stringify("Updated project:", initializeProject);
+    try{
+        publishData.publishStellar(JSON.stringify(announceUpdate));
+    }catch(error){
+        console.error("Error", error)
+    }
+
 
 });
 
