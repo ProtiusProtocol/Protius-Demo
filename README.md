@@ -6,7 +6,7 @@ This is a proof-of-concept (PoC) implementation of the **Protius Protocol**, dem
 
 ## 📚 Table of Contents
 1. [Project Structure](#project-structure)
-2. [Key Features](#features)
+2. [Features](#features)
 3. [Tech Stack](#tech-stack)
 4. [Setup Instructions](#setup-instructions)
 5. [API Endpoints](#api-endpoints)
@@ -15,9 +15,8 @@ This is a proof-of-concept (PoC) implementation of the **Protius Protocol**, dem
 8. [Configuration](#configuration)
 9. [Notes](#notes)
 10. [Roadmap](#roadmap)
-11. [Contributing](#contributing)
-12. [License](#license)
-13. [Authors](#authors)
+11. [License](#license)
+12. [Authors](#authors)
 
 ## 📁 Project Structure
 
