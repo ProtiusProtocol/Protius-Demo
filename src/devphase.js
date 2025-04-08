@@ -17,7 +17,7 @@ class ProjectDevelopmentPhase {
         projectStatus = "Ongoing";
         projectPhases = {
             landTenure: "Pending",
-            servitueLeeway: "Pending",
+            servitudeLeeway: "Pending",
             resourceStudy: "Pending",
             gridConnection: "Pending",
             gridConnectionAgreement: "Pending",
@@ -42,93 +42,6 @@ class ProjectDevelopmentPhase {
         return { projectName, projectDeveloper, projectID, projectStatus, projectPhases}
     }
 
-    verifyLandTenure(){
-
-    }
-
-    verifyServitueLeeway (){
-
-    }
-
-    verifyResourceStudy (){
-
-    }
-
-    verifyGridConnection () {
-
-    }
-
-    verifyGridConnectionAgreement () {
-
-    }
-
-    verifyEnvironmentalReview (){
-
-    }
-
-    verifyPublicParticipation () {
-
-    }
-
-    verifyPermits () {
-
-    }
-
-    verifyPowerPurchaseAgreemnet (){
-
-    }
-
-    verifyPlantDesign(){
-
-    }
-
-    verifyEPC () {
-
-    }
-
-    verifyDebtProvider() {
-
-    }
-
-    verifyEquityProvider() {
-
-    }
-
-    verifyFinancialModel (){
-
-    }
-
-    verifyFinancialModelAudit (){
-
-    }
-
-    verifyEquipmentSupplier(){
-
-    }
-
-    verifyRoadsLogisticsPlan(){
-
-    }
-
-    verifyTaxPlan(){
-
-    }
-
-    verifyStakeholders() {
-
-    }
-
-    verifyCommunityEngagementPlan(){
-
-    }
-
-    verifyAccDevelopmentSpendOnBudget(){
-
-    }
-
-    completeDevelopmentPhase(){
-
-    }
 }
 
 module.exports = ProjectDevelopmentPhase;
