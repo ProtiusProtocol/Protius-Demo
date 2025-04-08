@@ -165,13 +165,124 @@ nvm use 20.17
 
 ## 🛠️ Roadmap 
 
-- ✅ Project creation and development tracking
-- 📄 Add database integration 
-- 🔐 Implement authentication 
-- 🌉 Full blockchain interaction (token issuance, smart contracts)
-- 📊 DAO and voting mechanisms
-- 💬 Real-time updates 
-- 📱 Updated GUI for user interactions
+- # Protius Protocol – Software Development Roadmap
+
+The Protius Protocol is a decentralized platform for funding, building, and transacting renewable energy assets. This roadmap is divided into two layers:
+
+1. **Project-Level Functionality** – tools for funding and launching individual energy projects
+2. **Platform-Level Infrastructure** – infrastructure to scale Protius as a public protocol
+
+---
+
+## 🚧 PART 1: Project-Level Functionality
+
+### 📌 Q2 2025: Phase 1 – Tokenization of Early-Stage Funding
+
+🎯 Enable crypto staking for project development  
+- [ ] Define utility token and staking mechanics 
+- [ ] Define KYC and AML mechanics
+- [ ] Smart contract for crypto staking + escrow  
+- [ ] Development premium payout logic for stakers  
+- [ ] Off-ramp mechanism to fiat for developers  
+- [ ] MVP frontend for staking interface  
+- [ ] Internal smart contract audit  
+- [ ] Launch on testnet (Stellar Soroban, or EVM-compatible chain)
+
+---
+
+### 📌 Q3 2025: Phase 2 – Tokenization of Equity &/ or Debt as appropriate and as the platform matures
+
+🎯 Automate capital deployment and post-COD returns  
+- [ ] Smart contracts for equity tokenization  
+- [ ] Tokenized debt (green bonds, loans) with repayment triggers 
+ -[ ] Smart contract development for technology choices across solar/ wind/ hydrogen
+- [ ] Smart contract logic for construction drawdowns  
+- [ ] Dividends and loan repayment automation  
+- [ ] Project milestone-linked performance oracles  
+- [ ] External smart contract audit  
+- [ ] DAO-based (?) validator voting for new projects
+
+---
+
+### 📌 Q4 2025: Phase 3 – Tokenization of Energy Sales for renewable energy off-take/ kilogram off-take for hydrogen projects (Smart off-take agreements/ PPA/ HSA)
+
+🎯 Decentralize kWh sales and energy buyer contracts ad kg hydrogen sales and molecule buyer contracts   
+- [ ] Smart PPA design and implementation  
+- [ ] Oracle integration for metered production data  
+- [ ] Buyer-seller PPA/ HSA matching system  
+- [ ] Carbon and REC tagging logic per kWh  
+- [ ] Fiat and crypto payment integrations  
+- [ ] Pilot with operational renewable plant  
+- [ ] Feedback loop with off-takers and aggregators
+
+---
+
+### 🧱 Infrastructure Tasks (Ongoing)
+
+- [ ] Backend API and DB for project data  
+- [ ] React-based frontend dashboard  
+- [ ] SBT issuance system for community roles  
+- [ ] Performance and impact dashboard for stakeholders  
+- [ ] Federated learning engine (Dream Catcher AI integration)
+
+---
+
+## 🛠️ PART 2: Platform-Level Infrastructure
+
+### 📌 Platform Core Development
+
+🎯 Make Protius the infrastructure layer for RE + derivatives of the kWh such as carbon/ CDRs/ RECs  
+- [ ] Modular smart contract library for projects to fork/use  
+- [ ] Public APIs for developers and data services  
+- [ ] Launchpad interface for tokenizing new energy projects  
+- [ ] SDK for energy developers to integrate token models  
+- [ ] Multi-chain and L2 deployment architecture (e.g. rollups, zkEVM, Stellar + EVM bridge)  
+- [ ] Decentralized identity + KYC modules for compliance
+
+---
+
+### 🌍 Ecosystem Growth
+
+🎯 Enable network effects, developer adoption, and Platform maturity  
+- [ ] Platform governance for protocol upgrades and fee policies  
+- [ ] Developer grants and incentive pools  
+- [ ] Staking rewards and protocol fee-sharing model  
+- [ ] SBT-based reputation and voting weight  
+- [ ] Community-verified project registry  
+- [ ] Aggregator layer for grid-level coordination and energy storage integration
+
+---
+
+### ♻️ Carbon/ RECs & Registry Integrations
+
+🎯 Bridge on-chain data with real-world impact verification  
+- [ ] MRV (monitoring, reporting, verification) integration for carbon  
+- [ ] Registry bridges to I-REC, Verra, or national bodies  
+- [ ] Open standards for carbon data tagging  
+- [ ] Protius as a recognized digital carbon infrastructure layer
+
+---
+
+### 🔐 Security & Compliance
+
+- [ ] Bug bounty and testnet hackathons  
+- [ ] Multi-sig treasury and protocol-controlled vaults  
+- [ ] Compliance APIs for institutional users  
+- [ ] Legal entity framework for Platform/ DAO (?) governance
+
+---
+
+## 🗓️ Long-Term (2026+)
+
+- [ ] Mobile app for investor and developer access  
+- [ ] Geographic forks for regional energy markets  
+- [ ] Real-time market for carbon/kWh bundles  
+- [ ] “Protius-as-a-Service” offering for utilities and cooperatives  
+- [ ] Use of ZK-proofs for privacy-preserving project performance claims
+
+---
+
+🏗️ All development tracked in Issues and Milestones. Contributions welcome.
 
 ---
 
