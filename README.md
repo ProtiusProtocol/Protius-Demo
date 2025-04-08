@@ -5,19 +5,19 @@ This is a proof-of-concept (PoC) implementation of the **Protius Protocol**, dem
 ---
 
 ## 📚 Table of Contents
-1. Project Structure
-2. Features
-3. Tech Stack
-4. Setup Instructions
-5. API Endpoints
-6. Routes
-7. Stellar Testnet Integration
-8. Configuration
-9. Notes
-10. Roadmap
-11. Contributing
-12. License
-13. Authors
+1. [Project Structure](#project-structure)
+2. [Key Features](#key-features)
+3. [Tech Stack](#tech-stack)
+4. [Setup Instructions](#setup-instructions)
+5. [API Endpoints](##api-endpoints)
+6. [Routes](#routes)
+7. [Stellar Testnet Integration](#stellar-testnet-integration)
+8. [Configuration](#configuration)
+9. [Notes](#notes)
+10. [Roadmap](#roadmap)
+11. [Contributing](#contributing)
+12. [License](#license)
+13. [Authors](#authors)
 
 ## 📁 Project Structure
 
