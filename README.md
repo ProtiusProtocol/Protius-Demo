@@ -6,10 +6,10 @@ This is a proof-of-concept (PoC) implementation of the **Protius Protocol**, dem
 
 ## 📚 Table of Contents
 1. [Project Structure](#project-structure)
-2. [Key Features](#key-features)
+2. [Key Features](#features)
 3. [Tech Stack](#tech-stack)
 4. [Setup Instructions](#setup-instructions)
-5. [API Endpoints](##api-endpoints)
+5. [API Endpoints](#api-endpoints)
 6. [Routes](#routes)
 7. [Stellar Testnet Integration](#stellar-testnet-integration)
 8. [Configuration](#configuration)
@@ -37,7 +37,7 @@ protius-protocol-poc/
 
 ---
 
-## 🚀 Key Features
+## 🚀 Features
 
 - 📁 **Project Creation and On-Chaining**: This allows users to initialize new RE projects On-Chain, launching the development phase of each project.
 - 🔁 **Development Tracking**: Upload documents and mark project phases as completed.
