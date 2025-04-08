@@ -62,8 +62,8 @@ protius-protocol-poc/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/ProtiusProtocol/ProtiusProtocol.git
-cd ProtiusProtocol
+git clone https://github.com/ProtiusProtocol/Protius-Demo.git
+cd C:\path-to-the-project-on-your-system\Protius-Demo
 ```
 
 ### 2. Install Dependencies
