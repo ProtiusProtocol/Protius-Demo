@@ -200,7 +200,7 @@ The Protius Protocol is a decentralized platform for funding, building, and tran
 - [ ] Dividends and loan repayment automation  
 - [ ] Project milestone-linked performance oracles  
 - [ ] External smart contract audit  
-- [ ] DAO-based (?) validator voting for new projects
+- [ ] Soul Bound Tokens (SBT) validator voting for new projects
 
 ---
 
@@ -244,7 +244,7 @@ The Protius Protocol is a decentralized platform for funding, building, and tran
 ### 🌍 Ecosystem Growth
 
 🎯 Enable network effects, developer adoption, and Platform maturity  
-- [ ] Platform governance for protocol upgrades and fee policies  
+- [ ] Platform governance, for SBT Governor level community engagement, for protocol upgrades and fee policies  
 - [ ] Developer grants and incentive pools  
 - [ ] Staking rewards and protocol fee-sharing model  
 - [ ] SBT-based reputation and voting weight  
