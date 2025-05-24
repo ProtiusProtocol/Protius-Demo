@@ -29,7 +29,7 @@ app.get('/create', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/pages/create.html'));
 })
 
-// GET Request to display the dao page
+// GET Request to display the project development page
 app.get('/development', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/pages/development.html'));
 })
