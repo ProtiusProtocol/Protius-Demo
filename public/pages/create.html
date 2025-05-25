@@ -35,7 +35,7 @@
         <div class="input-section">
             <form>
                 <label>Project Name </label>
-                <textarea id="projName" name="content" rows="4" cols="50" placeholder="Enter your text here"></textarea>
+                <textarea id="projName" name="content" rows="4" cols="50" placeholder="Enter project name here"></textarea>
 
                 <label>Project Developer</label>
                 <textarea id="projDev" name="content" rows="4" cols="50" placeholder="Enter your text here"></textarea>
@@ -57,6 +57,8 @@
         </footer>
     </div>
     <script src="./pages/create.js"></script>
+    <script src="./pages/createContract.js"></script>
+    <script src="./pages/connectWallet.js"></script>
 
     <script>
         fetch('./pages/menu.html')
@@ -68,6 +70,7 @@
             })
             .then(data => {
                 document.getElementById('nav-container').innerHTML = data;
+                initializeWalletConnect();
             })
             .catch(error => {
                 console.error('Error loading menu:', error);
