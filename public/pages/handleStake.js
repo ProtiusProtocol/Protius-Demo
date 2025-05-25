@@ -1,5 +1,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
+    let userAddress = document.getElementById('walletAddress');
     let stakeInput = document.getElementById('tokenInput');
     let submitButton = document.getElementById('submitStakeButton');
     let cancelButton = document.getElementById('cancelStakeButton');
@@ -15,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('First point of log',tokens)
         
         // Fetch data from HTML and send to transact API 
-        fetch('https://ahtiso-dios-test-network-02d729532570.herokuapp.com/api/staketoken', {
+        fetch('/api/newstake', {
             method: 'POST',
             headers: {'Content-Type': 'application/json' },
             body: JSON.stringify({ tokens })
@@ -27,14 +28,16 @@ document.addEventListener('DOMContentLoaded', () => {
     submitButton.addEventListener('click', function () {
         tokenStake( stakeInput.value );
         console.log('Second point of log', stakeInput.value );
-
+        alert('Stake submitted successfully!');
+        location.reload();
     });
 
 
     // Event listener for the CANCEL button on HTML page
     cancelButton.addEventListener('click', function () {
         console.log('Transaction Canceled');
-        alert('File uploaded successfully!');
+        alert('Process cancelled!');
+        location.reload();
         })
 
 
