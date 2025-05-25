@@ -4,7 +4,6 @@ const multer = require('multer');
 const publishData = require('./src/publishData');
 const ProjectDevelopmentPhase = require('./src/devphase');
 const ProjectPool = require('./src/projectPool');
-const sampleProject = require('./src/sampleProject');
 
 
 const storage = multer.memoryStorage();
@@ -17,7 +16,7 @@ app.use(express.json());
 const DEFAULT_PORT = 4000; 
 
 app.use(express.static(path.join(__dirname, 'public'))); 
-
+app.use('/contracts', express.static(path.join(__dirname, 'contracts')));
 
 // GET Request to display the main page
 app.get('/', (req, res) => {
@@ -44,11 +43,28 @@ app.get('/invest', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/pages/invest.html'));
 })
 
+// Contract Template: GET request to serve solidity file
+app.get('/contracts/stake.sol', (req, res) => {
+    res.sendFile(path.join(__dirname, 'contracts', 'stake.sol'));
+  });
 
-//app.post('/api/devphase', (req, res) => {
-//    const { title, input } = req.body;
-//    console.log('API Received:',title, input);
-//})
+// Contract Template: GET request to serve solidity file
+app.get('/contracts/newproject.sol', (req, res) => {
+    res.sendFile(path.join(__dirname, 'contracts', 'newproject.sol'));
+  });
+  
+  
+// POST request to test and ensure stakes are received 
+app.post('/api/newstake', (req, res) => {
+    const { tokens } = req.body;
+    console.log('API Received:', tokens);
+})
+
+// POST request to test and ensure votes are received 
+app.post('/api/vote', (req, res) => {
+    const { userVote } = req.body;
+    console.log('Vote Received:', userVote);
+})
 
 // POST request to create new project
 app.post('/api/createproject', (req, res) => {
@@ -76,36 +92,43 @@ app.post('/api/createproject', (req, res) => {
     
 })
 
+
 // POST request to upload files 
-app.post('/api/devphase', upload.single('document'), (req, res) => {
-    if (!req.file){
-        res.json({ message: 'No file uploaded!' });
+app.post('/api/devphase', (req, res) => {
+    const { title, pname } = req.body;
+
+    if (!title || !pname) {
+        return res.status(400).json({ message: 'Missing title or pname in request' });
     }
-    const uploadedFile = req.file;
-    const title = req.body;
 
-    // The following is an implementation to show how the programs retreives projects
-    // from the project pool and updates specific information before publishing to the network (if/as needed)
-    const initializeProject = sampleProject.newProject;
+    const matchingProject = newProjectPool.getAllProjects().find(project =>
+        project.projectName.toLowerCase().includes(pname.toLowerCase())
+    );
+
+    if (!matchingProject) {
+        return res.status(404).json({ message: 'Project not found in ProjectPool' });
+    }
+
+    if (!(title in matchingProject.projectPhases)) {
+        return res.status(400).json({ message: `Invalid project phase: ${title}` });
+    }
+
+    matchingProject.projectPhases[title] = 'Completed';
+
+    newProjectPool.updateProject(matchingProject.projectID, matchingProject); // replace existing
+
+    console.log('Updated project:', matchingProject);
+    console.log('Updated Project Pool:', newProjectPool.getAllProjects());
+  
+    const announceUpdate = JSON.stringify("Updated project:", matchingProject);
     
-    initializeProject.projectPhases[title.title] = "Completed";
-    console.log("Updated project:", initializeProject);
-
-    const updatedProjectPool = newProjectPool.addProject(initializeProject);
-    console.log("Updated Project Pool:", updatedProjectPool);
-
-    // Depending on our final implementation, we could either emit a message to 
-    // protius to say a step was completed, or publish to the entire network. 
-    // This will be influenced by things like transaction costs.
-    // For now, we will publish to the Stellar testnet
-    const announceUpdate = JSON.stringify("Updated project:", initializeProject);
     try{
         publishData.publishStellar(JSON.stringify(announceUpdate));
+        res.json({ message: 'Project updated and published' });
     }catch(error){
         console.error("Error", error)
+        res.status(500).json({ message: 'Publishing failed' });
     }
-
-
 });
 
 
