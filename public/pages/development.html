@@ -35,6 +35,11 @@
         <div class="input-section">
             <form>
                 <div class="form-group">
+                    <label for="textInput">Project Name:</label>
+                    <textarea id="devphaseProjectName" name="content" rows="2" cols="50" placeholder="Enter your text here"></textarea>
+                </div>
+                
+                <div class="form-group">
                     <label for="titleSelect">Select Content Type:</label>
                     <select id="titleSelect" name="title">
                         <option value="" disabled selected>Select an option</option>
@@ -86,6 +91,7 @@
         </footer>
     </div>
     <script src="./pages/handleDevPhase.js"></script>
+    <script src="./pages/connectWallet.js"></script>
 
     <script>
         fetch('./pages/menu.html')
@@ -97,6 +103,7 @@
             })
             .then(data => {
                 document.getElementById('nav-container').innerHTML = data;
+                initializeWalletConnect();
             })
             .catch(error => {
                 console.error('Error loading menu:', error);
