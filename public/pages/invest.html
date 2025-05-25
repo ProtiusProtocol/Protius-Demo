@@ -32,11 +32,13 @@
         <div class="row">
             <h3> Stake Tokens </h3>
             <p> Stake Tokens for the current round. </p>
-            <form>
+            <form id="contractForm">
                 <input id="tokenInput" placeholder="How many tokens do you want to stake"> 
             </form>
             <div style="height: 1cm;"></div>
             <button id="submitStakeButton"> Stake </button> <button id="cancelStakeButton"> Cancel </button> 
+            <pre id="output"></pre>
+
         </div>
 
         <hr>
@@ -47,7 +49,9 @@
             <p> © Protius Protocol 2025 </p>
         </footer>
     </div>
-    <script src="../pages/handleStake.js"></script>
+    
+    <script src="../pages/createContract.js"></script>
+    <script src="./pages/connectWallet.js"></script>
 
     <script>
         fetch('./pages/menu.html')
@@ -59,6 +63,7 @@
             })
             .then(data => {
                 document.getElementById('nav-container').innerHTML = data;
+                initializeWalletConnect();
             })
             .catch(error => {
                 console.error('Error loading menu:', error);
