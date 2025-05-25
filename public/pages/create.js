@@ -24,14 +24,14 @@ document.addEventListener('DOMContentLoaded', () =>{
     // Event listener for the SUBMIT button on HTML page
     createButton.addEventListener('click', function () {
         handleProjectCreation( projectNameHTML.value, projectDeveloperHTML.value );
-        alert('Data addedd successfully');
+        //location.reload();
     });
 
     // Event listener for the CANCEL button on HTML page
     cancelButton.addEventListener('click', function () {
         console.log('Process cancelled!');
         alert('Process cancelled!');
-        
+        //location.reload();
     });
 
 })
