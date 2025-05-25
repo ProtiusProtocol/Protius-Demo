@@ -52,6 +52,7 @@
     </div>
     <script src="./voteHandler.js"></script>
     <script src="./transactReceiver.js"></script>
+    <script src="./pages/connectWallet.js"></script>
 
     <script>
         fetch('./pages/menu.html')
@@ -63,6 +64,7 @@
             })
             .then(data => {
                 document.getElementById('nav-container').innerHTML = data;
+                initializeWalletConnect();
             })
             .catch(error => {
                 console.error('Error loading menu:', error);
