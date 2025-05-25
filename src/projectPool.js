@@ -4,14 +4,26 @@ class ProjectPool {
 
     // Constructor for the transaction pool as an array of transactions
     constructor() {
-        this.projectsInPool = [];
+        this.projects = [];
     }
 
     // Function to add transactions to the transaction pool
     addProject(addNew) {
-        this.projectsInPool.push(addNew);  
-        return this.projectsInPool;
+        this.projects.push(addNew);  
+        return this.projects;
     };
+
+    updateProject(projectID, updatedProject) {
+        const index = this.projects.findIndex(p => p.projectID === projectID);
+        if (index !== -1) {
+            this.projects[index] = updatedProject;
+        }
+        return this.projects;
+    }
+
+    getAllProjects() {
+        return this.projects;
+    }
 
 };
 
