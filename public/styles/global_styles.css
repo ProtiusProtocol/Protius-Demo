@@ -1,0 +1,60 @@
+/* Homepage ______________________________________________*/
+.homepage-video-div {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;  
+  align-items: center;      
+  background-color: #000;   
+}
+
+.homepage-video {
+  /*width: 20vw; */             
+  max-width: 100%;
+  height: auto;
+  justify-content: center; 
+  border-radius: 12px;     
+}
+
+
+/* Contact Page Columns_______________________ */
+.three-column-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 2rem;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+.column {
+  flex: 1;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+}
+
+.column img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1rem;
+}
+
+.column p {
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+.column button {
+  padding: 0.6rem 1.2rem;
+  background-color: #007acc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.column button:hover {
+  background-color: #005fa3;
+}

@@ -1,0 +1,162 @@
+.information_cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+  
+.info_card {
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    margin: 1rem;
+    flex: 1;
+    text-align: center;
+}
+
+
+.info_card h1, h2, h3, h4 {
+    text-align: center;
+}
+  
+.info_card p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+  
+.info_card a {
+    color: #0062ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+  
+.info_card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+
+/* Photo Cards_______________________________________________________ */
+.photo_card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.photo_card {
+  cursor: pointer;
+  text-align: center;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  width: 40vw;
+}
+
+.photo_card:hover {
+  transform: translateY(-5px);
+}
+
+.photo_card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.photo_card p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    margin: 1rem;
+
+}
+
+.photo_card button {
+    margin-bottom: 1.5rem;
+}
+
+.photo_card h1, h2, h3, h4 {
+    padding-top: 1rem;
+    text-align: center;
+}
+
+
+/* Quick Stat Boxes______________________________________________*/
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Top Half */
+.card-top {
+  background: var(--primary); 
+  color: #fff;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Bottom Half */
+.card-bottom {
+  background: var(--accent);
+  color: #fff;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Left-Aligned Text */
+.card h3, .card p {
+  margin: 0;
+  text-align: left;
+}
+
+/* Icon Placeholder */
+.card .icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/*Text Box Styles__________________________________________*/
+.about-section {
+  padding: 2rem 2rem;
+  background: #f7f7f7;
+  display: flex;
+  justify-content: center;
+}
+
+.text-box {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1rem;
+  max-width: 900px;
+  width: 100%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e0e0e0;
+}
+
+.text-box h1, .text-box h2, .text-box h3 {
+  color: #1e1e1e;
+  margin-bottom: 1rem;
+}
+
+.text-box p {
+  color: #444;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
