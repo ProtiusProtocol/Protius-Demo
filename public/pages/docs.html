@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../styles/dao.css">
+    <link rel="stylesheet" href="../styles/drop_down.css">
+    <link rel="stylesheet" href="../styles/menu_styles.css">
+    <link rel="stylesheet" href="../styles/dashboard.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+
+<body id="page_body">
+
+    <!-- Main Content -->
+    <div class="main-content">
+        
+        <!-- Header -->
+        <header id="page_header">
+            <div>
+                <img class="logo" src="../images/protius_protocol_logo.jpg" alt="Logo">
+            </div>
+            <div id="nav-container"></div>
+        </header>
+
+        <div style="height: 1cm;"></div>
+
+        <!-- Header -->       
+        <h1> Protius Documentation </h1>
+
+        <!-- Row 1: Project documentation -->
+        <section class="information_cards">
+
+            <div class="info_card">
+              <h3> White Paper </h3>
+              <p> Read the Protius White paper </p>
+              <button> Read </button>
+            </div>
+
+            <div class="info_card">
+              <h3> API Integration </h3>
+              <p> Update a project with details of its development. </p>
+              <button> API's </button>
+            </div>
+
+            <div class="info_card">
+              <h3> Project Onboarding </h3>
+              <p> Learn how to bring a new project onchain. </p>
+              <button> Onboard </button>
+            </div>
+        
+        </section>
+        <hr>
+
+        <!-- Footer -->
+
+        <footer id="page_footer">
+            <p> © Protius Protocol. 2025 </p>
+        </footer>
+    </div>
+    <script src="./pages/create.js"></script>
+    <script src="./pages/createContract.js"></script>
+    <script src="./pages/connectWallet.js"></script>
+
+    <script>
+        fetch('./pages/menu.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.status);
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById('nav-container').innerHTML = data;
+                initializeWalletConnect();
+            })
+            .catch(error => {
+                console.error('Error loading menu:', error);
+                document.getElementById('nav-container').innerHTML = 'Failed to load menu';
+            });
+    </script>
+
+
+</body>
+</html>
+
