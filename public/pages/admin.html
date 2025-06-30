@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../styles/dao.css">
+    <link rel="stylesheet" href="../styles/drop_down.css">
+    <link rel="stylesheet" href="../styles/menu_styles.css">
+    <link rel="stylesheet" href="../styles/dashboard.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" >
+
+    <style>
+      .alert-list li {
+        color: black !important;
+      }
+    </style>
+  </head>
+
+<body id="page_body">
+
+    <!-- Main Content -->
+    <div class="main-content">
+        
+        <!-- Header_____________________________________-->
+        <header id="page_header">
+            <div>
+                <img class="logo" src="../images/protius_protocol_logo.jpg" alt="Logo">
+            </div>
+            <div id="nav-container"></div>
+        </header>
+        <div style="height: 1cm;"></div>
+        <!--##########################################____________________________-->
+
+        
+        <!-- Row 1: Welcome message_____________________________________ -->
+        <h1> Admin Dashboard</h1>
+
+        <h2 style="text-align: right; color: red;"> Alerts </h2>
+        <div style="height: 0.8cm;"></div>
+
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-top" style="background: white;">
+              <h3 id="contractAlertMessage" style="color: red; font-style: italic;"></h3>
+              <ul id="alertList" class="alert-list"></ul>
+            </div>
+            <div class="card-bottom" style="background: red;">
+              <p id="token-balance">Smart Contract Alerts</p>
+              <a href="#">
+                <img class="icon" src="../images/next_icon.png">
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div style="height: 1cm;"></div>
+
+        <h2 style="text-align: left;"> Quick Stats</h2>
+        <div style="height: 0.8cm;"></div>
+
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-top" style="background: white;">
+              <h3>500</h3>
+              <img class="icon" src="../images/token_icon.png" alt="Token Icon">
+            </div>
+            <div class="card-bottom" style="background: #c97618;">
+              <p id="token-balance">Token Reserve</p>
+              <a href="#">
+                <img class="icon" src="../images/next_icon.png">
+              </a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-top" style="background: white;">
+              <h3>$1,000,000</h3>
+              <img class="icon" src="../images/money_icon.png" alt="Fiat Icon">
+            </div>
+            <div class="card-bottom" style="background: #6c757d;">
+              <p id="fiat-balance">Fiat Balance</p>
+              <a href="#">
+                <img class="icon" src="../images/next_icon.png">
+              </a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-top" style="background: white;">
+              <h3>20</h3>
+              <img class="icon" src="../images/portfolio_icon.png" alt="Token Icon">
+            </div>
+            <div class="card-bottom" style="background: #0ba8e6;">
+              <p id="token-balance">Projects</p>
+              <a href="#">
+                <img class="icon" src="../images/next_icon.png">
+              </a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-top" style="background: white;">
+              <h3>50</h3>
+              <img class="icon" src="../images/pending_icon.png" alt="Fiat Icon">
+            </div>
+            <div class="card-bottom" style="background: rgb(216, 8, 243);">
+              <p id="fiat-balance">Pending Transactions</p>
+              <a href="#">
+                <img class="icon" src="../images/next_icon.png">
+              </a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-top" style="background: white;">
+              <h3>120</h3>
+              <img class="icon" src="../images/pending_icon.png" alt="Fiat Icon">
+            </div>
+            <div class="card-bottom" style="background: rgb(5, 133, 22);">
+              <p id="fiat-balance">Pending Contracts</p>
+              <a href="#">
+                <img class="icon" src="../images/next_icon.png">
+              </a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-top" style="background: white;">
+              <h3>11</h3>
+              <img class="icon" src="../images/pending_icon.png" alt="Fiat Icon">
+            </div>
+            <div class="card-bottom" style="background: rgb(207, 12, 103);">
+              <p id="fiat-balance">Pending Support Requests</p>
+              <a href="#">
+                <img class="icon" src="../images/next_icon.png">
+              </a>
+            </div>
+          </div>
+
+        </div>
+        <div style="height: 2cm;"></div>
+        <!--##########################################____________________________-->
+
+
+        <!-- Row 2: Network Overview_____________________________________ -->
+        <h2 style="text-align: left;"> Usage Stats</h2>
+        <div style="height: 0.8cm;"></div>
+        <canvas id="dappPerformanceChart" width="400" height="200"></canvas>
+
+        <div style="height: 1cm;"></div>
+        <!--##########################################____________________________-->
+
+
+        <!-- Row 3: Network Overview_____________________________________ -->
+        <h2 style="text-align: left;"> Transaction Volume </h2>
+        <div style="height: 0.8cm;"></div>
+        <canvas id="transactionVolumeChart" width="400" height="200"></canvas>
+        <hr>        
+        <!--##########################################____________________________-->
+
+    </div>
+
+
+    <!-- Footer_____________________________________ -->
+    <footer id="page_footer">
+        <p> © Protius Protocol. 2025 </p>
+    </footer>
+    <!--##########################################____________________________-->
+
+    <!--<script_____________________________________-->
+    <!--<script src="./pages/adminPages/adminDashboard.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+
+    <!-- Fetch Menu Script-->
+    <script>
+        fetch('./pages/adminMenu.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.status);
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById('nav-container').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error loading menu:', error);
+                document.getElementById('nav-container').innerHTML = 'Failed to load menu';
+            });
+    </script>
+
+    <!-- DApp Performance Chart-->
+    <script>
+        const ctx = document.getElementById('dappPerformanceChart').getContext('2d');
+
+        const dappPerformanceChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+            label: 'DApp Usage',
+            data: [20, 50, 80, 120, 100, 210],
+            fill: true,
+            backgroundColor: 'rgba(74, 144, 226, 0.2)',
+            borderColor: '#4a90e2',
+            tension: 0.3,
+            pointRadius: 4,
+            pointBackgroundColor: '#4a90e2'
+            }]
+        },
+        options: {
+            responsive: true,
+            interaction: {
+            mode: 'index',
+            intersect: false
+            },
+            plugins: {
+            tooltip: {
+                enabled: true
+            },
+            legend: {
+                display: true
+            }
+            },
+            scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                display: true,
+                text: 'Users'
+                }
+            },
+            x: {
+                title: {
+                display: true,
+                text: 'Month'
+                }
+            }
+            }
+        }
+        });
+    </script>
+
+    <!-- Transaction Volume Chart-->
+    <script>
+        const volumeChart = document.getElementById('transactionVolumeChart').getContext('2d');
+
+        const transactionVolumeChart = new Chart(volumeChart, {
+        type: 'bar',
+        data: {
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            datasets: [{
+            label: 'Transaction Volume',
+            data: [180, 240, 200, 300, 280, 150, 220],
+            backgroundColor: '#4a90e2',
+            borderRadius: 6,
+            barThickness: 40,
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                callbacks: {
+                label: context => `Volume: ${context.parsed.y} txns`
+                }
+            }
+            },
+            scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                display: true,
+                text: 'Transactions'
+                }
+            },
+            x: {
+                title: {
+                display: true,
+                text: 'Day of Week'
+                }
+            }
+            }
+        }
+        });
+
+
+    </script>
+
+    <!-- User Alerts-->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io('http://localhost:4000');
+      const alertList = document.getElementById("alertList");
+
+      socket.on('message', msg => {
+        const data = typeof msg.data === 'string'
+          ? JSON.parse(msg.data)
+          : msg.data;
+
+        console.log('Received:', msg);
+        const item = document.createElement("li");
+        item.innerHTML = `${msg.event} - <b>User:</b> ${msg.user}, <b>Details:</b> ${JSON.stringify(data)}, <b>Time:</b> ${new Date(msg.timestamp).toLocaleString()}`;
+        alertList.prepend(item);
+      });
+    </script>
+
+</body>
+</html>
+
+
