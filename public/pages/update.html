@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../styles/dao.css">
+    <link rel="stylesheet" href="../styles/drop_down.css">
+    <link rel="stylesheet" href="../styles/menu_styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+
+<body id="page_body">
+
+    <!-- Main Content -->
+    <div class="main-content">
+        
+        <!-- Header -->
+        <header id="page_header">
+            <div>
+                <img class="logo" src="../images/protius_protocol_logo.jpg" alt="Logo">
+            </div>
+            <div id="nav-container"></div>
+        </header>
+
+        <div style="height: 1cm;"></div>
+
+        <!-- Header -->       
+        <h1> Project Development - Update Phases </h1>
+
+        <!-- Row 1 -->
+        <p> Form to input information about the project lifecycle. You can either fill in data manually, or upload a document. </p>
+
+        <div class="input-section">
+            <form>
+                <div class="form-group">
+                    <label for="textInput">Project Name:</label>
+                    <select id="projectSelect">
+                        <option value="" disabled selected>Select an option</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="titleSelect">Select Content Type:</label>
+                    <select id="titleSelect" name="title">
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="landTenure">Land Tenure</option>
+                        <option value="servitudeLeeway">Servitude Leeway</option>
+                        <option value="resourceStudy">Resource Study</option>
+                        <option value="gridConnection">Grid Connection</option>
+                        <option value="gridConnectionAgreement">Grid Connection Agreement</option>
+                        <option value="environmentalReview">Environmental Review</option>
+                        <option value="publicParticipation">Public Participation</option>
+                        <option value="permits">Permits</option>
+                        <option value="powerPurchaseAgreemnet">Power Purchase Agreemnet</option>
+                        <option value="plantDesign">Plant Design</option>
+                        <option value="ePC">EPC </option>
+                        <option value="debtProvider">Debt Provider</option>
+                        <option value="equityProvider">Equity Provider</option>
+                        <option value="financialModel">Financial Model</option>
+                        <option value="financialModelAudit">Financial Model Audit</option>
+                        <option value="equipmentSupplier">Equipment Supplier</option>
+                        <option value="roadsLogisticsPlan">Roads Logistics Plan</option>
+                        <option value="taxPlan">Tax Plan</option>
+                        <option value="stakeholders">Stakeholders</option>
+                        <option value="communityEngagementPlan">Community Engagement Plan</option>
+                        <option value="accDevelopmentSpendOnBudget">Development Spend On Budget</option>
+                    </select>
+                </div>
+        
+                <div class="form-group">
+                    <label for="textInput">Content:</label>
+                    <textarea id="textInput" name="content" rows="4" cols="50" placeholder="Enter your text here"></textarea>
+                </div>
+        
+                <div class="form-group">
+                    <label for="fileInput">Upload File:</label>
+                    <input type="file" id="fileInput" name="file">
+                </div>
+            </form>
+
+            <button id="submitPhaseButton"> Submit </button> <button id="cancelPhaseButton"> Cancel </button> 
+
+        </div>
+
+        <hr>
+
+        <!-- Footer -->
+
+        <footer id="page_footer">
+            <p> © Protius Protocol. 2025 </p>
+        </footer>
+    </div>
+    <script src="./pages/handleDevPhase.js"></script>
+    <script src="./pages/connectWallet.js"></script>
+
+    <script>
+        fetch('./pages/menu.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.status);
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById('nav-container').innerHTML = data;
+                initializeWalletConnect();
+            })
+            .catch(error => {
+                console.error('Error loading menu:', error);
+                document.getElementById('nav-container').innerHTML = 'Failed to load menu';
+            });
+    </script>
+
+</body>
+</html>
+
