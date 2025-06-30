@@ -2,15 +2,18 @@ const { generateUUID } = require("pubnub")
 
 
 class ProjectDevelopmentPhase {
-    constructor ( projectName, projectDeveloper, projectPhases ){
+    constructor ( projOwner, projectName, projectDeveloper, projectPhases, projectFinance, developerContribution ){
+        this.projOwner = projOwner,
         this.projectName = projectName,
         this.projectDeveloper = projectDeveloper,
+        this.projectFinance = projectFinance,
+        this.developerContribution = developerContribution,
         this.projectPhases = projectPhases,
         this.projectID = `ID-${crypto.randomUUID()}`
     }
     
 
-    createNewProject( projectName, projectDeveloper){
+    createNewProject( projOwner, projectName, projectDeveloper, projectFinance, developerContribution){
         let projectID, projectStatus, projectPhases;
 
         projectID = `ID-${crypto.randomUUID()}`;
@@ -39,7 +42,7 @@ class ProjectDevelopmentPhase {
             accDevelopmentSpendOnBudget: "Pending",
             completeDevelopmentPhase: "Pending"
         }
-        return { projectName, projectDeveloper, projectID, projectStatus, projectPhases}
+        return { projOwner, projectName, projectDeveloper, projectFinance, developerContribution, projectID, projectStatus, projectPhases}
     }
 
 }
