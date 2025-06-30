@@ -2,7 +2,7 @@
 .nav-container {
     background-color: white;
     padding: 1vw;
-    position: relative; /* Contain absolutely positioned children */
+    position: relative; 
 }
 
 .nav-menu {
@@ -20,7 +20,7 @@
 
 .nav-menu > li > a {
     text-decoration: none;
-    color: #333; /* Visible on white background */
+    color: #333; 
     font-size: 1.1rem;
     padding: 0.75rem 1rem;
     display: block;
@@ -80,7 +80,7 @@
     padding: 0.6rem 1rem;
     display: block;
     transition: background-color 0.2s ease, color 0.2s ease;
-    white-space: nowrap; /* Prevent wrapping */
+    white-space: nowrap; 
 }
 
 .mega-menu .left-panel ul li a:hover {
@@ -93,11 +93,10 @@
     display: none;
     position: absolute;
     top: 0;
-    width: 200px; /* Fixed width for consistency */
+    width: 200px; 
     padding: 0.5rem;
     background-color: #fff;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
-    /* Default to right */
     left: 100%;
 }
 

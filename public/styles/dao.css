@@ -78,6 +78,19 @@ button:hover {
     background-color: rgb(194, 118, 5);
 }
 
+.button {
+    padding: 12px 25px;
+    background-color: rgb(5, 48, 190);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: rgb(194, 118, 5);
+}
 
 
 
