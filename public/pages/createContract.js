@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to updated specified contract template and download for audit
     async function updateAndDownloadContract(projName, devName) {
-        const response = await fetch('/contracts/newproject.sol');       
+        const response = await fetch('/smartcontracts/newproject.sol');       
 
         let contractSource = await response.text();
 
