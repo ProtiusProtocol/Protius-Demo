@@ -1,6 +1,6 @@
 let currentIndex = 0;
 
-//alert("Link working");
+//alert("Link working"); Left for debugging
 const words = document.querySelectorAll('.word');
 
 document.addEventListener('DOMContentLoaded', () => {
