@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../styles/dao.css">
+    <link rel="stylesheet" href="../styles/drop_down.css">
+    <link rel="stylesheet" href="../styles/menu_styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+
+<body id="page_body">
+
+    <!-- Main Content -->
+    <div class="main-content">
+        
+        <!-- Header -->
+        <header id="page_header">
+            <div>
+                <img class="logo" src="../images/protius_protocol_logo.jpg" alt="Logo">
+            </div>
+            <div id="nav-container"></div>
+        </header>
+
+        <div style="height: 1cm;"></div>
+
+        <!-- Header -->       
+        <h1> Project Development </h1>
+        <p> Join the future of energy; bring your renewable energy project onchain with the Protius Protocol. </p>
+
+        <!-- Row 1 -->
+        <h2> Initiate New Project </h2>
+
+        <div class="input-section">
+            <form>
+                <label>Project Owner</label>
+                <div>
+                    <p id="walletAddress" style="color: rgb(108, 91, 91); font-style: italic; margin-top: 0.5px; font-size: 1rem; text-align: center;"> Project Owner</p>
+                </div>
+
+                <label>Project Name </label>
+                <textarea id="projName" name="content" rows="4" cols="50" placeholder="Enter project name here"></textarea>
+                <div style="height: 0.4cm;"></div>
+
+                <label>Project Developer</label>
+                <textarea id="projDev" name="content" rows="4" cols="50" placeholder="Enter project developer here"></textarea>
+                <div style="height: 0.4cm;"></div>
+                
+                <label> Develop's Contribution ($, US Dollars) </label>
+                <input id="devFinanceInput" style="height: 2rem; width: 30vw; margin-top: 0.5rem;" placeholder="Enter Developer contribution here"> 
+                <div style="height: 0.4cm;"></div>
+
+                <label>Project Finance Needs ($, US Dollars) </label>
+                <input id="projFin" type="number" name="content" style="height: 2rem; width: 30vw; margin-top: 0.5rem;" placeholder="Enter project finance needs here"></textarea>
+            </form>
+
+            <div style="height: 0.5cm;"></div>
+            <button id="createProjectButton" type="button"> Create Project </button> 
+            <button id="cancelButton" type="button"> Cancel </button> 
+        </div>
+
+        <div style="height: 1cm;"></div>
+
+        <hr>
+
+        <!-- Footer -->
+
+        <footer id="page_footer">
+            <p> © Protius Protocol. 2025 </p>
+        </footer>
+    </div>
+    <script src="./pages/create.js"></script>
+    <script src="./pages/createContract.js"></script>
+    <script src="./pages/connectWallet.js"></script>
+
+    <script>
+        fetch('./pages/menu.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.status);
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById('nav-container').innerHTML = data;
+                initializeWalletConnect();
+            })
+            .catch(error => {
+                console.error('Error loading menu:', error);
+                document.getElementById('nav-container').innerHTML = 'Failed to load menu';
+            });
+    </script>
+
+
+</body>
+</html>
+
