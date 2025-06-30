@@ -1,5 +1,4 @@
 const StellarSdk = require('stellar-sdk');
-//const fetch = require('node-fetch');
 
 // Public and Secret Keys only for test purposes
 const publicKey = 'GDDRUPVK73LQXFBADDSNFUUQENROMZLJXBKHLXJRON357SPGJUDQV4YN'; // Only for testing, a different implementation will be used for production
@@ -14,8 +13,6 @@ function publishStellar(dataValue){
 
     // data and key to publish
     const dataKey = 'message';  
-    //const dataValue = 'Testing connection to Test net_KWUIPP';  
-
 
     server.loadAccount(publicKey)
     .then(account => {
