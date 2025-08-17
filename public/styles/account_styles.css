@@ -1,0 +1,115 @@
+/* Account Styles 
+
+#overall_account_page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+    margin: 0;
+}
+
+.account_page_container {
+    display: flex;
+    margin:0;
+    width: 60%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+.column {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.left {
+    background-color: #f7d1d1;
+    border-right: 1px solid #ddd;
+    padding: 50px;
+}
+.right {
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+    padding: 50px;
+}
+    */
+
+
+/* Account Styles */
+#overall_account_page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.account_page_container {
+    display: flex;
+    
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Columns */
+.column {
+    flex: 1;
+    padding: 40px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.left {
+    background-color: #f2bcbc; /* slightly darker shade */
+    border-right: 1px solid #ddd;
+}
+
+.right {
+    background-color: #fafafa; /* lighter shade */
+}
+
+/* Headings */
+.column h2 {
+    margin-bottom: 25px;
+    font-size: 1.4rem;
+}
+
+/* Inputs */
+.column input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+}
+
+/* Buttons 
+.column button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #444;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 10px;
+}
+
+.column button:hover {
+    background-color: #222;
+}
+    */
+
+/* Paragraphs */
+.column p {
+    margin-top: 15px;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #666;
+}
