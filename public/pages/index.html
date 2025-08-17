@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../styles/dao.css">
     <link rel="stylesheet" href="../styles/menu_styles.css">
+    <link rel="stylesheet" href="../styles/account_styles.css">
     <link rel="stylesheet" href="../styles/global_styles.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
@@ -20,15 +21,12 @@
             <div>
                 <img class="logo" src="../images/protius_protocol_logo.jpg" alt="Logo">
             </div>
-            <div id="nav-container"></div>
+            <a href="#" class="button" onclick="showSection('overall_account_page')"> Connect </a>
         </header>
 
         <div style="height: 1cm;"></div>
 
-        <!-- Header -->       
-        <h1 style="text-align: center;"> Protius App </h1>
-        <p style="text-align: center;"> Welcome to the Protius Protocol <i> Demo </i> </p>
-
+        
         <!-- Row 1 -->
         <div class="homepage-video-div">
             <video 
@@ -42,9 +40,39 @@
         </div>
 
         <hr>
+        
+        <!-- Header -->       
+        <h1 style="text-align: center;"> Protius App </h1>
+        <p style="text-align: center;"> Welcome to the Protius Protocol <i> Demo </i> </p>
+
+
+        <div id="overall_account_page" class="dashboard-section" style="display:none;">
+            <div class="account_page_container">
+                <!-- Password Login Section -->
+                <div class="column left">
+                    <h2>Login with Password</h2>
+                    <input type="text" id="login-email" placeholder="Email"> 
+                    <input type="password" id="login-password" placeholder="Password">
+                    <a class="button" href="user-dashboard">Login</a>
+                </div>
+                
+                <!-- Wallet Connection Section -->
+                <div class="column left">
+                    <h2>Connect Your Wallet</h2>
+                    <div style="display: flex; flex-direction: column;">
+                        <a class="button" id="connectWalletButton">Connect Wallet</a>
+                        <p id="walletAddress" style="color: red; font-style: italic; margin-top: 0.5px; font-size: 0.7rem; text-align: center;">
+                            Wallet Not connected
+                        </p>
+                        <a class="button" id="disconnectWalletButton">Disconnect Wallet</a>
+                    </div>
+                </div>
+ 
+            </div>
+        </div>
+
 
         <!-- Footer -->
-
         <footer id="page_footer">
             <p> © Protius Protocol 2025 </p>
         </footer>
@@ -53,21 +81,22 @@
     <script src="./pages/connectWallet.js"></script>
 
     <script>
-        fetch('./pages/menu.html')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok: ' + response.status);
-                }
-                return response.text();
-            })
-            .then(data => {
-                document.getElementById('nav-container').innerHTML = data;
-                initializeWalletConnect();
-            })
-            .catch(error => {
-                console.error('Error loading menu:', error);
-                document.getElementById('nav-container').innerHTML = 'Failed to load menu';
-            });
+  
+        //document.getElementById('nav-container').innerHTML = data;
+        initializeWalletConnect();
+
+    </script>
+
+
+    <!-- Show Login Sections -->
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.dashboard-section');
+            sections.forEach(sec => sec.style.display = 'none');
+
+            const target = document.getElementById(sectionId);
+            if (target) target.style.display = 'block';
+            }
     </script>
 
 
