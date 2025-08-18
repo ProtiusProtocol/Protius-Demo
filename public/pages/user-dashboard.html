@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="../styles/dao.css">
+    <link rel="stylesheet" href="../styles/drop_down.css">
+    <link rel="stylesheet" href="../styles/menu_styles.css">
+    <link rel="stylesheet" href="../styles/dashboard.css" />
+    <link rel="stylesheet" href="../styles/global_styles.css">
+    <link rel="stylesheet" href="../styles/grid.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" >
+  </head>
+
+<body id="dashboard-page-body">
+
+  <!--Menu Side Bar___________________________________________________________ -->
+    <div class="sidebar" id="sidebar">
+        <!-- Dashboard Header and Menu Items on Side Bar ___________________-->
+        <h2>User Dashboard</h2>
+        <div id="nav-container"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+
+        <!-- Logo Section on Side Bar ___________________-->
+        <div class="logo">
+            <a href="index"> 
+                <img id="logo_image" src="../images/protius_protocol_logo.jpg" alt="Logo">
+            </a>
+        </div>
+        <!-- END OF LOGO SECTION ####################################-->
+        
+        <!-- # Dashboard Sub Section ### _____________________________ -->
+        <div id="dashboard" class="dashboard-section">
+            <h2 style="text-align: right; color: red;"> Alerts </h2>
+                <div style="height: 0.8cm;"></div>
+
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-top" style="background: white;">
+                            <h3 id="contractAlertMessage" style="color: red; font-style: italic;"></h3>
+                            <ul id="alertList" class="alert-list"></ul>
+                        </div>
+
+                        <div class="card-bottom" style="background: red;">
+                            <p id="token-balance">Smart Contract Alerts</p>
+                            <a href="#">
+                                <img class="icon" src="../images/next_icon.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="height: 1cm;"></div>
+
+                <h2 style="text-align: left;"> Quick Stats</h2>
+                <div style="height: 0.8cm;"></div>
+
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-top" style="background: white;">
+                            <h3>500</h3>
+                            <img class="icon" src="../images/token_icon.png" alt="Token Icon">
+                        </div>
+
+                        <div class="card-bottom" style="background: #c97618;">
+                            <p id="token-balance">Token Reserve</p>
+                            <a href="#">
+                                <img class="icon" src="../images/next_icon.png">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-top" style="background: white;">
+                            <h3>$1,000,000</h3>
+                            <img class="icon" src="../images/money_icon.png" alt="Fiat Icon">
+                        </div>
+
+                        <div class="card-bottom" style="background: #6c757d;">
+                            <p id="fiat-balance">Fiat Balance</p>
+                            <a href="#">
+                                <img class="icon" src="../images/next_icon.png">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-top" style="background: white;">
+                            <h3>20</h3>
+                            <img class="icon" src="../images/portfolio_icon.png" alt="Token Icon">
+                        </div>
+
+                        <div class="card-bottom" style="background: #0ba8e6;">
+                            <p id="token-balance">Projects</p>
+                            <a href="#">
+                                <img class="icon" src="../images/next_icon.png">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-top" style="background: white;">
+                            <h3>50</h3>
+                            <img class="icon" src="../images/pending_icon.png" alt="Fiat Icon">
+                        </div>
+
+                        <div class="card-bottom" style="background: rgb(216, 8, 243);">
+                            <p id="fiat-balance">Pending Transactions</p>
+                            <a href="#">
+                                <img class="icon" src="../images/next_icon.png">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-top" style="background: white;">
+                            <h3>120</h3>
+                            <img class="icon" src="../images/pending_icon.png" alt="Fiat Icon">
+                        </div>
+
+                        <div class="card-bottom" style="background: rgb(5, 133, 22);">
+                            <p id="fiat-balance">Pending Contracts</p>
+                            <a href="#">
+                                <img class="icon" src="../images/next_icon.png">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-top" style="background: white;">
+                            <h3>11</h3>
+                            <img class="icon" src="../images/pending_icon.png" alt="Fiat Icon">
+                        </div>
+
+                        <div class="card-bottom" style="background: rgb(207, 12, 103);">
+                            <p id="fiat-balance">Pending Support Requests</p>
+                            <a href="#">
+                                <img class="icon" src="../images/next_icon.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div style="height: 2cm;"></div>
+                <!--##########################################____________________________-->
+
+
+                <!-- Row 2: Network Overview_____________________________________ -->
+                <h2 style="text-align: left;"> Usage Stats</h2>
+                <div style="height: 0.8cm;"></div>
+                <canvas id="dappPerformanceChart" width="400" height="200"></canvas>
+
+                <div style="height: 1cm;"></div>
+                <!--##########################################____________________________-->
+
+
+                <!-- Row 3: Network Overview_____________________________________ -->
+                <h2 style="text-align: left;"> Transaction Volume </h2>
+                <div style="height: 0.8cm;"></div>
+                <canvas id="transactionVolumeChart" width="400" height="200"></canvas>
+                <hr>        
+                <!--##########################################____________________________-->
+        </div>
+
+
+        <!-- # Invest Sub Section ### _____________________________ -->
+        <div id="invest" class="dashboard-section" style="display:none;">
+            <!-- Header -->       
+            <h1> Invest in Renewable Energy </h1>
+            <p> Invest by staking your tokens in a project. Fill out the form below to copmlete staking. </p>
+
+            <!-- Row 1 -->
+            <div class="row">
+                <h3> Form: Stake Tokens </h3>
+                
+                <form id="contractForm">
+                    <label>Sender's Address</label>
+                    <div>
+                        <p id="walletAddress" style="color: rgb(108, 91, 91); font-style: italic; margin-top: 0.5px; font-size: 1rem; text-align: left;"> Project Owner</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="textInput">Project Name:</label>
+                        <select id="projectToInvest">
+                            <option value="" disabled selected>Select an option</option>
+                        </select>
+                        <div id="projectDetails" style="margin-top: 1rem;"></div>
+                    </div>
+
+                    <div id="project-container"></div>
+                    <div style="height: 1cm;"></div>
+
+                    <label> Stake Amount </label>
+                    <input id="tokenInput" placeholder="Stake tokens to invest" style="height: 2rem; width: 30vw; margin-top: 1rem;"> 
+                </form>
+                <div style="height: 1cm;"></div>
+
+                <p style="font-size: 0.7rem; font-style: italic; color: grey;"> 
+                    *Notice: By clicking on the stake button below, you are making a financial commitment 
+                    with the value of the tokens indicated. Please verify the project information and financial
+                    implications.
+                </p>
+                <button id="submitStakeButton"> Stake </button> <button id="cancelStakeButton"> Cancel </button> 
+                <pre id="output"></pre>
+
+            </div>
+        </div>
+        
+
+
+        <!-- # New Project Sub Section ### _____________________________ -->
+        <div id="projects" class="dashboard-section" style="display:none;">
+            <!-- Header -->       
+            <h1> Create a New Project </h1>
+            <p> Join the future of energy; bring your renewable energy project onchain with the Protius Protocol. </p>
+
+            <!-- Row 1 -->
+            <h2> Initiate New Project </h2>
+
+            <div class="input-section">
+                <form>
+                    <label>Project Owner</label>
+                    <div>
+                        <p id="walletAddress" style="color: rgb(108, 91, 91); font-style: italic; margin-top: 0.5px; font-size: 1rem; text-align: center;"> Project Owner</p>
+                    </div>
+
+                    <label>Project Name </label>
+                    <textarea id="projName" name="content" rows="4" cols="50" placeholder="Enter project name here"></textarea>
+                    <div style="height: 0.4cm;"></div>
+
+                    <label>Project Developer</label>
+                    <textarea id="projDev" name="content" rows="4" cols="50" placeholder="Enter project developer here"></textarea>
+                    <div style="height: 0.4cm;"></div>
+                    
+                    <label> Develop's Contribution ($, US Dollars) </label>
+                    <input id="devFinanceInput" style="height: 2rem; width: 30vw; margin-top: 0.5rem;" placeholder="Enter Developer contribution here"> 
+                    <div style="height: 0.4cm;"></div>
+
+                    <label>Project Finance Needs ($, US Dollars) </label>
+                    <input id="projFin" type="number" name="content" style="height: 2rem; width: 30vw; margin-top: 0.5rem;" placeholder="Enter project finance needs here"></textarea>
+                </form>
+
+                <div style="height: 0.5cm;"></div>
+                <button id="createProjectButton" type="button"> Create Project </button> 
+                <button id="cancelButton" type="button"> Cancel </button> 
+            </div>
+
+        </div>
+
+
+        <!-- # Update Projects Sub Section ### _____________________________ -->
+        <div id="update" class="dashboard-section" style="display:none;">
+            <!-- Header -->       
+            <h1> Update an Existing Project </h1>
+
+            <!-- Row 1 -->
+            <p> Form to input information about the project lifecycle. You can either fill in data manually, or upload a document. </p>
+
+            <div class="input-section">
+                <form>
+                    <div class="form-group">
+                        <label for="textInput">Project Name:</label>
+                        <select id="projectSelect">
+                            <option value="" disabled selected>Select an option</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="titleSelect">Select Content Type:</label>
+                        <select id="titleSelect" name="title">
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="landTenure">Land Tenure</option>
+                            <option value="servitudeLeeway">Servitude Leeway</option>
+                            <option value="resourceStudy">Resource Study</option>
+                            <option value="gridConnection">Grid Connection</option>
+                            <option value="gridConnectionAgreement">Grid Connection Agreement</option>
+                            <option value="environmentalReview">Environmental Review</option>
+                            <option value="publicParticipation">Public Participation</option>
+                            <option value="permits">Permits</option>
+                            <option value="powerPurchaseAgreemnet">Power Purchase Agreemnet</option>
+                            <option value="plantDesign">Plant Design</option>
+                            <option value="ePC">EPC </option>
+                            <option value="debtProvider">Debt Provider</option>
+                            <option value="equityProvider">Equity Provider</option>
+                            <option value="financialModel">Financial Model</option>
+                            <option value="financialModelAudit">Financial Model Audit</option>
+                            <option value="equipmentSupplier">Equipment Supplier</option>
+                            <option value="roadsLogisticsPlan">Roads Logistics Plan</option>
+                            <option value="taxPlan">Tax Plan</option>
+                            <option value="stakeholders">Stakeholders</option>
+                            <option value="communityEngagementPlan">Community Engagement Plan</option>
+                            <option value="accDevelopmentSpendOnBudget">Development Spend On Budget</option>
+                        </select>
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="textInput">Content:</label>
+                        <textarea id="textInput" name="content" rows="4" cols="50" placeholder="Enter your text here"></textarea>
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="fileInput">Upload File:</label>
+                        <input type="file" id="fileInput" name="file">
+                    </div>
+                </form>
+
+                <button id="submitPhaseButton"> Submit </button> <button id="cancelPhaseButton"> Cancel </button> 
+
+            </div>
+        </div>
+
+
+
+        <!-- # Contracts Sub Section ### _____________________________ -->
+        <div id="contracts" class="dashboard-section" style="display:none;">
+            <!-- Header -->       
+            <h1> Smart Contracts </h1>
+            <p> Overview of your Smart Contracts. </p>
+
+            <!-- Row 1 -->
+            <div class="document-grid">
+                <div class="document-card">
+                    <img src="../images/lorem_ipsum_image.jpg" alt="Document">
+                    <div class="desc">Staking for XYZ</div>
+                    <a href="#">View</a>
+                </div>
+
+                <div class="document-card">
+                    <img src="../images/lorem_ipsum_image.jpg" alt="Document">
+                    <div class="desc">Staking for ABC</div>
+                    <a href="#">View</a>
+                </div>
+
+                <div class="document-card">
+                    <img src="../images/lorem_ipsum_image.jpg" alt="Document">
+                    <div class="desc">Project One Financial Close </div>
+                    <a href="#">View</a>
+                </div>
+
+                <div class="document-card">
+                    <img src="../images/lorem_ipsum_image.jpg" alt="Document">
+                    <div class="desc">Project Two Trade</div>
+                    <a href="#">View</a>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- # Docs Sub Section ### _____________________________ -->
+        <div id="docs" class="dashboard-section" style="display:none;">
+            <!-- Header -->       
+            <h1> Protius Documentation </h1>
+
+            <!-- Row 1: Project documentation -->
+            <section class="information_cards">
+
+                <div class="info_card">
+                <h3> White Paper </h3>
+                <p> Read the Protius White paper </p>
+                <button> Read </button>
+                </div>
+
+                <div class="info_card">
+                <h3> API Integration </h3>
+                <p> Update a project with details of its development. </p>
+                <button> API's </button>
+                </div>
+
+                <div class="info_card">
+                <h3> Project Onboarding </h3>
+                <p> Learn how to bring a new project onchain. </p>
+                <button> Onboard </button>
+                </div>
+            
+            </section>
+        </div>
+        
+
+
+        <!-- # Support Sub Section ### _____________________________ -->
+        <div id="support" class="dashboard-section" style="display:none;">
+             <!-- Header -->       
+            <h1> Get in touch </h1>
+            <p> Join the future of energy; bring your renewable energy project onchain with the Protius Protocol. </p>
+
+            <!-- Row 1 -->
+            <section class="three-column-row">
+                <div class="column">
+                    <img src="../images/platform_icon.png" alt="Icon 1">
+                    <p> Get in touch to for custom renewable energy projects </p>
+                    <p><b> info@protius.net </b></p>
+                </div>
+
+                <div class="column">
+                    <img src="../images/platform_icon.png" alt="Icon 2">
+                    <p>Request a meeeting with the Protius team.</p>
+                    <p><b> info@protius.net </b></p>
+                </div>
+
+                <div class="column">
+                    <img src="../images/platform_icon.png" alt="Icon 3">
+                    <p>Request to join the community on Discord </p>
+                    <a href="/" target="_blank" class="button">Join Us</a>
+                </div>
+            </section>
+        </div>
+
+
+
+
+
+
+
+        
+    </div>
+
+
+
+    <!-- Scripts -->
+    <script src="./pages/connectWallet.js"></script>
+    <script src="./pages/dashboard.js"></script>
+    <script src="./pages/updatePortfolio.js"></script>
+    <script src="./pages/manageProjects.js"></script>
+    <script src="./pages/create.js"></script>
+    <script src="./pages/createContract.js"></script>
+    <script src="./pages/handleDevPhase.js"></script>
+    <script src="./pages/handleStake.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6/dist/ethers.umd.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <!-- DApp Performance Chart-->
+    <script>
+        const ctx = document.getElementById('dappPerformanceChart').getContext('2d');
+
+        const dappPerformanceChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+            label: 'DApp Usage',
+            data: [20, 50, 80, 120, 100, 210],
+            fill: true,
+            backgroundColor: 'rgba(74, 144, 226, 0.2)',
+            borderColor: '#4a90e2',
+            tension: 0.3,
+            pointRadius: 4,
+            pointBackgroundColor: '#4a90e2'
+            }]
+        },
+        options: {
+            responsive: true,
+            interaction: {
+            mode: 'index',
+            intersect: false
+            },
+            plugins: {
+            tooltip: {
+                enabled: true
+            },
+            legend: {
+                display: true
+            }
+            },
+            scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                display: true,
+                text: 'Users'
+                }
+            },
+            x: {
+                title: {
+                display: true,
+                text: 'Month'
+                }
+            }
+            }
+        }
+        });
+    </script>
+
+
+    <!-- Transaction Volume Chart-->
+    <script>
+        const volumeChart = document.getElementById('transactionVolumeChart').getContext('2d');
+
+        const transactionVolumeChart = new Chart(volumeChart, {
+        type: 'bar',
+        data: {
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            datasets: [{
+            label: 'Transaction Volume',
+            data: [180, 240, 200, 300, 280, 150, 220],
+            backgroundColor: '#4a90e2',
+            borderRadius: 6,
+            barThickness: 40,
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                callbacks: {
+                label: context => `Volume: ${context.parsed.y} txns`
+                }
+            }
+            },
+            scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                display: true,
+                text: 'Transactions'
+                }
+            },
+            x: {
+                title: {
+                display: true,
+                text: 'Day of Week'
+                }
+            }
+            }
+        }
+        });
+    </script>
+
+
+    <!-- Toggle Sidebar -->
+    <script>
+        function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('collapsed');
+        }
+    </script>
+
+
+    <!-- Show Menu -->
+    <script>
+        fetch('./pages/userMenu.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.status);
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById('nav-container').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error loading menu:', error);
+                document.getElementById('nav-container').innerHTML = 'Failed to load menu';
+            });
+    </script>
+
+
+    <!-- Show Dashboard Sections -->
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.dashboard-section');
+            sections.forEach(sec => sec.style.display = 'none');
+
+            const target = document.getElementById(sectionId);
+            if (target) target.style.display = 'block';
+            }
+    </script>
+
+    <!-- User Alerts -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io('http://localhost:4000');
+      const alertList = document.getElementById("alertList");
+
+      socket.on('message', msg => {
+        const data = typeof msg.data === 'string'
+          ? JSON.parse(msg.data)
+          : msg.data;
+
+        console.log('Received:', msg);
+        const item = document.createElement("li");
+        item.innerHTML = `${msg.event} - <b>User:</b> ${msg.user}, <b>Details:</b> ${JSON.stringify(data)}, <b>Time:</b> ${new Date(msg.timestamp).toLocaleString()}`;
+        alertList.prepend(item);
+      });
+    </script>
+
+
+
+    <!-- Smart Contract Call: Hardhat Local Deployment -->
+    <script type="module">
+        
+        import {
+            JsonRpcProvider,
+            Contract,
+            parseUnits
+        } from "https://cdn.jsdelivr.net/npm/ethers@6.10.0/+esm";
+
+        const projectSelectionHTML = document.getElementById('projectToInvest'); 
+        const stakeInput = document.getElementById('tokenInput');
+        const submitButton = document.getElementById('submitStakeButton');
+        const cancelButton = document.getElementById('cancelStakeButton');
+
+        // Details of deployed contract
+        const CONTRACT_ADDRESS = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512";
+        const USDC_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3"; 
+        const CONTRACT_ABI = [
+            {
+            "inputs": [
+                {
+                "internalType": "address",
+                "name": "_developer",
+                "type": "address"
+                },
+                {
+                "internalType": "address",
+                "name": "_usdcToken",
+                "type": "address"
+                }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+            },
+            {
+            "anonymous": false,
+            "inputs": [
+                {
+                "indexed": true,
+                "internalType": "address",
+                "name": "user",
+                "type": "address"
+                },
+                {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+                }
+            ],
+            "name": "Staked",
+            "type": "event"
+            },
+            {
+            "inputs": [],
+            "name": "developer",
+            "outputs": [
+                {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+            },
+            {
+            "inputs": [
+                {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+                }
+            ],
+            "name": "stake",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+            },
+            {
+            "inputs": [
+                {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+                }
+            ],
+            "name": "stakes",
+            "outputs": [
+                {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+            },
+            {
+            "inputs": [],
+            "name": "totalStaked",
+            "outputs": [
+                {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+            },
+            {
+            "inputs": [],
+            "name": "usdcToken",
+            "outputs": [
+                {
+                "internalType": "contract IERC20",
+                "name": "",
+                "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+            }
+        ];
+
+        const ERC20_ABI=[
+            {
+            "inputs": [
+                {
+                "internalType": "string",
+                "name": "name_",
+                "type": "string"
+                },
+                {
+                "internalType": "string",
+                "name": "symbol_",
+                "type": "string"
+                }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+            },
+            {
+            "anonymous": false,
+            "inputs": [
+                {
+                "indexed": true,
+                "internalType": "address",
+                "name": "owner",
+                "type": "address"
+                },
+                {
+                "indexed": true,
+                "internalType": "address",
+                "name": "spender",
+                "type": "address"
+                },
+                {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "value",
+                "type": "uint256"
+                }
+            ],
+            "name": "Approval",
+            "type": "event"
+            },
+            {
+            "anonymous": false,
+            "inputs": [
+                {
+                "indexed": true,
+                "internalType": "address",
+                "name": "from",
+                "type": "address"
+                },
+                {
+                "indexed": true,
+                "internalType": "address",
+                "name": "to",
+                "type": "address"
+                },
+                {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "value",
+                "type": "uint256"
+                }
+            ],
+            "name": "Transfer",
+            "type": "event"
+            },
+            {
+            "inputs": [
+                {
+                "internalType": "address",
+                "name": "owner",
+                "type": "address"
+                },
+                {
+                "internalType": "address",
+                "name": "spender",
+                "type": "address"
+                }
+            ],
+            "name": "allowance",
+            "outputs": [
+                {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+            },
+            {
+            "inputs": [
+                {
+                "internalType": "address",
+                "name": "spender",
+                "type": "address"
+                },
+                {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+                }
+            ],
+            "name": "approve",
+            "outputs": [
+                {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+                }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "function"
+            },
+            {
+            "inputs": [
+                {
+                "internalType": "address",
+                "name": "account",
+                "type": "address"
+                }
+            ],
+            "name": "balanceOf",
+            "outputs": [
+                {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+            },
+            {
+            "inputs": [],
+            "name": "decimals",
+            "outputs": [
+                {
+                "internalType": "uint8",
+                "name": "",
+                "type": "uint8"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+            },
+            {
+            "inputs": [
+                {
+                "internalType": "address",
+                "name": "spender",
+                "type": "address"
+                },
+                {
+                "internalType": "uint256",
+                "name": "subtractedValue",
+                "type": "uint256"
+                }
+            ],
+            "name": "decreaseAllowance",
+            "outputs": [
+                {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+                }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "function"
+            },
+            {
+            "inputs": [
+                {
+                "internalType": "address",
+                "name": "spender",
+                "type": "address"
+                },
+                {
+                "internalType": "uint256",
+                "name": "addedValue",
+                "type": "uint256"
+                }
+            ],
+            "name": "increaseAllowance",
+            "outputs": [
+                {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+                }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "function"
+            },
+            {
+            "inputs": [],
+            "name": "name",
+            "outputs": [
+                {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+            },
+            {
+            "inputs": [],
+            "name": "symbol",
+            "outputs": [
+                {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+            },
+            {
+            "inputs": [],
+            "name": "totalSupply",
+            "outputs": [
+                {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+            },
+            {
+            "inputs": [
+                {
+                "internalType": "address",
+                "name": "to",
+                "type": "address"
+                },
+                {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+                }
+            ],
+            "name": "transfer",
+            "outputs": [
+                {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+                }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "function"
+            },
+            {
+            "inputs": [
+                {
+                "internalType": "address",
+                "name": "from",
+                "type": "address"
+                },
+                {
+                "internalType": "address",
+                "name": "to",
+                "type": "address"
+                },
+                {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+                }
+            ],
+            "name": "transferFrom",
+            "outputs": [
+                {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+                }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "function"
+            }
+        ];
+
+        const provider = new JsonRpcProvider("http://localhost:8545");
+
+        // Connect to wallet
+        let signer, contract, usdc;
+
+        async function getWallet(){
+            const accounts = await provider.listAccounts(); // returns array of addresses
+            signer = await provider.getSigner(accounts[0].address);
+            console.log(signer); //DEBUG LOG
+            contract = new Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+            usdc = new Contract(USDC_ADDRESS, ERC20_ABI, signer);
+        };
+        
+
+
+        async function stakeTokens() {
+            try {
+                await getWallet()
+
+                const rawAmount = stakeInput.value;
+                const projectSelection = projectSelectionHTML.value;
+                if (!rawAmount || isNaN(rawAmount)) {
+                    alert("Enter a valid number of tokens");
+                    return;
+                }
+
+                const decimals = await usdc.decimals();
+                const amount = parseUnits(rawAmount, decimals);
+                const userAddress = await signer.getAddress();
+
+                //Transfer test usdc
+                const deployer = await provider.getSigner(0);
+                usdc = new Contract(USDC_ADDRESS, ERC20_ABI, deployer);
+                await usdc.transfer(userAddress, parseUnits("1000", 6));
+
+                const allowance = await usdc.allowance(userAddress, CONTRACT_ADDRESS);
+                const balance = await usdc.balanceOf(userAddress);
+
+                console.log("Amount:", amount.toString());
+                console.log("Address:", userAddress.toString());
+                console.log("Allowance:", allowance.toString());
+                console.log("Balance:", balance.toString());
+                console.log("Project:", projectSelection);
+                
+                if (allowance < amount) {
+                    console.log("Approving USDC...");
+                    const approveTx = await usdc.approve(CONTRACT_ADDRESS, amount);
+                    await approveTx.wait();
+                }
+
+                // DEBUG LOG______________
+                console.log("Selector for stake:", contract.interface.getFunction("stake").selector);
+
+                // Call the stake function
+                console.log("Staking tokens...");
+                const tx = await contract.stake(amount);
+                await tx.wait();
+
+                alert("Stake successful!");
+                //location.reload();
+
+            } catch (err) {
+                console.error(err);
+                alert("Transaction failed or cancelled.");
+            }
+        }
+
+        submitButton.addEventListener('click', stakeTokens);
+
+        cancelButton.addEventListener('click', () => {
+            console.log("Staking cancelled");
+            alert("Process cancelled!");
+            location.reload();
+        });
+        
+    </script>
+
+
+</body>
+</html>
+
+
