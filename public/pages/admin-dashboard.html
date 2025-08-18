@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../styles/dao.css">
+    <link rel="stylesheet" href="../styles/drop_down.css">
+    <link rel="stylesheet" href="../styles/menu_styles.css">
+    <link rel="stylesheet" href="../styles/dashboard.css" />
+    <link rel="stylesheet" href="../styles/global_styles.css">
+    <link rel="stylesheet" href="../styles/grid.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" >
+  </head>
+
+<body id="dashboard-page-body">
+
+  <!--Menu Side Bar___________________________________________________________ -->
+    <div class="sidebar" id="sidebar">
+        <!-- Dashboard Header and Menu Items on Side Bar ___________________-->
+        <h2>Admin Dashboard</h2>
+        <div id="nav-container"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+
+        <!-- Logo Section on Side Bar ___________________-->
+        <div class="logo">
+            <a href="index"> 
+                <img id="logo_image" src="../images/protius_protocol_logo.jpg" alt="Logo">
+            </a>
+        </div>
+        <!-- END OF LOGO SECTION ####################################-->
+        
+        <!-- # Dashboard Sub Section ### _____________________________ -->
+        <div id="dashboard" class="dashboard-section">
+            <h2 style="text-align: right; color: red;"> Alerts </h2>
+                <div style="height: 0.8cm;"></div>
+
+                <div class="card-grid">
+                <div class="card">
+                    <div class="card-top" style="background: white;">
+                    <h3 id="contractAlertMessage" style="color: red; font-style: italic;"></h3>
+                    <ul id="alertList" class="alert-list"></ul>
+                    </div>
+                    <div class="card-bottom" style="background: red;">
+                    <p id="token-balance">Smart Contract Alerts</p>
+                    <a href="#">
+                        <img class="icon" src="../images/next_icon.png">
+                    </a>
+                    </div>
+                </div>
+                </div>
+
+                <div style="height: 1cm;"></div>
+
+                <h2 style="text-align: left;"> Quick Stats</h2>
+                <div style="height: 0.8cm;"></div>
+
+                <div class="card-grid">
+                <div class="card">
+                    <div class="card-top" style="background: white;">
+                    <h3>500</h3>
+                    <img class="icon" src="../images/token_icon.png" alt="Token Icon">
+                    </div>
+                    <div class="card-bottom" style="background: #c97618;">
+                    <p id="token-balance">Token Reserve</p>
+                    <a href="#">
+                        <img class="icon" src="../images/next_icon.png">
+                    </a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-top" style="background: white;">
+                    <h3>$1,000,000</h3>
+                    <img class="icon" src="../images/money_icon.png" alt="Fiat Icon">
+                    </div>
+                    <div class="card-bottom" style="background: #6c757d;">
+                    <p id="fiat-balance">Fiat Balance</p>
+                    <a href="#">
+                        <img class="icon" src="../images/next_icon.png">
+                    </a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-top" style="background: white;">
+                    <h3>20</h3>
+                    <img class="icon" src="../images/portfolio_icon.png" alt="Token Icon">
+                    </div>
+                    <div class="card-bottom" style="background: #0ba8e6;">
+                    <p id="token-balance">Projects</p>
+                    <a href="#">
+                        <img class="icon" src="../images/next_icon.png">
+                    </a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-top" style="background: white;">
+                    <h3>50</h3>
+                    <img class="icon" src="../images/pending_icon.png" alt="Fiat Icon">
+                    </div>
+                    <div class="card-bottom" style="background: rgb(216, 8, 243);">
+                    <p id="fiat-balance">Pending Transactions</p>
+                    <a href="#">
+                        <img class="icon" src="../images/next_icon.png">
+                    </a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-top" style="background: white;">
+                    <h3>120</h3>
+                    <img class="icon" src="../images/pending_icon.png" alt="Fiat Icon">
+                    </div>
+                    <div class="card-bottom" style="background: rgb(5, 133, 22);">
+                    <p id="fiat-balance">Pending Contracts</p>
+                    <a href="#">
+                        <img class="icon" src="../images/next_icon.png">
+                    </a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-top" style="background: white;">
+                    <h3>11</h3>
+                    <img class="icon" src="../images/pending_icon.png" alt="Fiat Icon">
+                    </div>
+                    <div class="card-bottom" style="background: rgb(207, 12, 103);">
+                    <p id="fiat-balance">Pending Support Requests</p>
+                    <a href="#">
+                        <img class="icon" src="../images/next_icon.png">
+                    </a>
+                    </div>
+                </div>
+
+                </div>
+                <div style="height: 2cm;"></div>
+                <!--##########################################____________________________-->
+
+
+                <!-- Row 2: Network Overview_____________________________________ -->
+                <h2 style="text-align: left;"> Usage Stats</h2>
+                <div style="height: 0.8cm;"></div>
+                <canvas id="dappPerformanceChart" width="400" height="200"></canvas>
+
+                <div style="height: 1cm;"></div>
+                <!--##########################################____________________________-->
+
+
+                <!-- Row 3: Network Overview_____________________________________ -->
+                <h2 style="text-align: left;"> Transaction Volume </h2>
+                <div style="height: 0.8cm;"></div>
+                <canvas id="transactionVolumeChart" width="400" height="200"></canvas>
+                <hr>        
+                <!--##########################################____________________________-->
+
+        </div>
+
+        
+        
+        <!-- # Projects Sub Section ### _____________________________ -->
+        <div id="projects" class="dashboard-section" style="display:none;">
+            <!-- Row 1: Welcome message -->
+            <h1> Projects Overview and Management </h1>
+            <div style="height: 1cm;"></div>
+
+            <div class="form-group">
+                <label for="textInput">Project Name:</label>
+                <select id="projectToInvest">
+                    <option value="" disabled selected>Select an option</option>
+                </select>
+                <div id="projectDetails" style="margin-top: 1rem;"></div>
+
+                <button id="approveProject" style="background-color: green;"> Approve </button> <button id="rejectProject" style="background-color: red;"> Reject </button>
+            </div>
+        </div>
+
+
+
+        <!-- # Contracts Sub Section ### _____________________________ -->
+        <div id="contracts" class="dashboard-section" style="display:none;">
+            <!-- Header -->       
+            <h1> Smart Contracts </h1>
+            <p> Overview of your Smart Contracts. </p>
+
+            <!-- Row 1 -->
+            <div class="document-grid">
+                <div class="document-card">
+                    <img src="../images/lorem_ipsum_image.jpg" alt="Document">
+                    <div class="desc">Staking for XYZ</div>
+                    <a href="#">View</a>
+                </div>
+
+                <div class="document-card">
+                    <img src="../images/lorem_ipsum_image.jpg" alt="Document">
+                    <div class="desc">Staking for ABC</div>
+                    <a href="#">View</a>
+                </div>
+
+                <div class="document-card">
+                    <img src="../images/lorem_ipsum_image.jpg" alt="Document">
+                    <div class="desc">Project One Financial Close </div>
+                    <a href="#">View</a>
+                </div>
+
+                <div class="document-card">
+                    <img src="../images/lorem_ipsum_image.jpg" alt="Document">
+                    <div class="desc">Project Two Trade</div>
+                    <a href="#">View</a>
+                </div>
+
+            </div>
+        </div>
+
+        
+        <!-- # Treasury Sub Section ### _____________________________ -->
+        <div id="treasury" class="dashboard-section" style="display:none;">
+        </div>
+
+
+        
+        <!-- # Support Sub Section ### _____________________________ -->
+        <div id="support" class="dashboard-section" style="display:none;">
+        </div>
+
+
+        
+        <!-- # Sub Section ### _____________________________ -->
+        <div id="#" class="dashboard-section">
+        </div>
+
+
+
+
+
+        
+    </div>
+
+
+
+    <!-- Scripts -->
+    <script src="./pages/connectWallet.js"></script>
+    <script src="./pages/dashboard.js"></script>
+    <script src="./pages/updatePortfolio.js"></script>
+    <script src="./pages/manageProjects.js"></script>
+    <script src="./pages/create.js"></script>
+    <script src="./pages/createContract.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <!-- DApp Performance Chart-->
+    <script>
+        const ctx = document.getElementById('dappPerformanceChart').getContext('2d');
+
+        const dappPerformanceChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+            label: 'DApp Usage',
+            data: [20, 50, 80, 120, 100, 210],
+            fill: true,
+            backgroundColor: 'rgba(74, 144, 226, 0.2)',
+            borderColor: '#4a90e2',
+            tension: 0.3,
+            pointRadius: 4,
+            pointBackgroundColor: '#4a90e2'
+            }]
+        },
+        options: {
+            responsive: true,
+            interaction: {
+            mode: 'index',
+            intersect: false
+            },
+            plugins: {
+            tooltip: {
+                enabled: true
+            },
+            legend: {
+                display: true
+            }
+            },
+            scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                display: true,
+                text: 'Users'
+                }
+            },
+            x: {
+                title: {
+                display: true,
+                text: 'Month'
+                }
+            }
+            }
+        }
+        });
+    </script>
+
+
+    <!-- Transaction Volume Chart-->
+    <script>
+        const volumeChart = document.getElementById('transactionVolumeChart').getContext('2d');
+
+        const transactionVolumeChart = new Chart(volumeChart, {
+        type: 'bar',
+        data: {
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            datasets: [{
+            label: 'Transaction Volume',
+            data: [180, 240, 200, 300, 280, 150, 220],
+            backgroundColor: '#4a90e2',
+            borderRadius: 6,
+            barThickness: 40,
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                callbacks: {
+                label: context => `Volume: ${context.parsed.y} txns`
+                }
+            }
+            },
+            scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                display: true,
+                text: 'Transactions'
+                }
+            },
+            x: {
+                title: {
+                display: true,
+                text: 'Day of Week'
+                }
+            }
+            }
+        }
+        });
+    </script>
+
+
+    <script>
+        function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('collapsed');
+        }
+    </script>
+
+    <script>
+        fetch('./pages/adminMenu.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.status);
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById('nav-container').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error loading menu:', error);
+                document.getElementById('nav-container').innerHTML = 'Failed to load menu';
+            });
+    </script>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.dashboard-section');
+            sections.forEach(sec => sec.style.display = 'none');
+
+            const target = document.getElementById(sectionId);
+            if (target) target.style.display = 'block';
+            }
+    </script>
+
+    <!-- User Alerts-->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io('http://localhost:4000');
+      const alertList = document.getElementById("alertList");
+
+      socket.on('message', msg => {
+        const data = typeof msg.data === 'string'
+          ? JSON.parse(msg.data)
+          : msg.data;
+
+        console.log('Received:', msg);
+        const item = document.createElement("li");
+        item.innerHTML = `${msg.event} - <b>User:</b> ${msg.user}, <b>Details:</b> ${JSON.stringify(data)}, <b>Time:</b> ${new Date(msg.timestamp).toLocaleString()}`;
+        alertList.prepend(item);
+      });
+    </script>
+
+
+</body>
+</html>
+
+
