@@ -18,7 +18,7 @@ const socketIO = require("socket.io");
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
-const DEFAULT_PORT = 4000; 
+const PORT = process.env.PORT || 4000;
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public'))); 
@@ -357,8 +357,8 @@ app.post('/api/projectdecision', async (req, res) => {
 });
 
 // Listening on the right port
-server.listen(DEFAULT_PORT, () => {
-    console.log(`Protius Server Listening on Localhost Port: ${DEFAULT_PORT}`);
+server.listen(PORT, () => {
+    console.log(`Protius Server Listening on Localhost Port: ${PORT}`);
 });
 
 //require('./src/eventListener');
