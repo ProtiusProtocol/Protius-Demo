@@ -41,4 +41,4 @@ function publishStellar(dataValue){
 }
 
 
-module.exports = {publishStellar};
+//module.exports = {publishStellar};

@@ -4,14 +4,14 @@ const multer = require('multer');
 const publishData = require('./src/publishData');
 const ProjectDevelopmentPhase = require('./src/devphase');
 const ProjectPool = require('./src/projectPool');
-const { insertProjectAndPhases } = require('./src/updateDatabase');
+//const { insertProjectAndPhases } = require('./src/updateDatabase');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 const createProject = new ProjectDevelopmentPhase();
 const newProjectPool = new ProjectPool();
 const mysql = require('mysql2/promise');
 const { insertNewEvent } = require("./src/eventsRouter");
-const { startChecking } = require("./src/poller");
+//const { startChecking } = require("./src/poller");
 const http = require("http");
 const socketIO = require("socket.io");
 
@@ -39,18 +39,7 @@ io.on('connection', socket => {
 });
 
 // Periodically check database for events
-startChecking(io);
-
-//_____________GET Requests for Test frontend pages___________________________________________________
-// GET Request to display the main page
-app.get('/test', (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/pages/test.html'));
-})
-
-// GET Request to display the main page
-app.get('/newtest', (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/pages/newTest.html'));
-})
+//startChecking(io);
 
 
 //_____________GET Requests for User Facing frontend pages___________________________________________________

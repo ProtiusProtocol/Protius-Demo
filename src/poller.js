@@ -33,6 +33,6 @@ function startChecking(io) {
   setInterval(checkDBUpdates, 60000);
 }
 
-module.exports = { startChecking };
+//module.exports = { startChecking };
 
   

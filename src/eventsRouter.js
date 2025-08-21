@@ -24,4 +24,4 @@ async function insertNewEvent(types, events, users, payloads, timestamps) {
   };
 
 
-module.exports = { insertNewEvent };
+//module.exports = { insertNewEvent };
