@@ -80,8 +80,13 @@ app.get('/create-project', (req, res) => {
 })
 
 // GET Request to display the dashboard page
-app.get('/dashboard', (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/pages/dashboard.html'));
+app.get('/admin-dashboard', (req, res) => {
+    res.sendFile(path.join(__dirname, '/public/pages/admin-dashboard.html'));
+})
+
+// GET Request to display the dashboard page
+app.get('/user-dashboard', (req, res) => {
+    res.sendFile(path.join(__dirname, '/public/pages/user-dashboard.html'));
 })
 
 // GET Request to display the smart contracts page
@@ -356,4 +361,4 @@ server.listen(DEFAULT_PORT, () => {
     console.log(`Protius Server Listening on Localhost Port: ${DEFAULT_PORT}`);
 });
 
-require('./src/eventListener');
+//require('./src/eventListener');
