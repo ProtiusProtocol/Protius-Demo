@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () =>{
             projectFinanceHTML.value, 
             devContributionHTML.value
         );
-        //location.reload();
+        location.reload();
 
     });
 
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     cancelButton.addEventListener('click', function () {
         console.log('Process cancelled!');
         alert('Process cancelled!');
-        //location.reload();
+        location.reload();
     });
 
 })
