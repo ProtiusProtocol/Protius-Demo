@@ -1,9 +1,10 @@
 
 function initializeWalletConnect() {
     const walletButton = document.getElementById('connectWalletButton');
-    const navMenu = document.querySelector('.nav-container');
+    //const navMenu = document.querySelector('.nav-container');
+    const disconnectButton = document.getElementById('disconnectWalletButton');
 
-    if (!walletButton || !navMenu) {
+    if (!walletButton ){ //|| !navMenu) {
         console.error('Wallet or menu elements not found.');
         return;
     }
@@ -15,14 +16,17 @@ function initializeWalletConnect() {
     }
 
     // Create disconnect button
-    let disconnectButton = document.getElementById('disconnectWalletButton');
+    //let disconnectButton = document.getElementById('disconnectWalletButton');
+    /*
     if (!disconnectButton) {
         disconnectButton = document.createElement('button');
         disconnectButton.id = 'disconnectWalletButton';
-        disconnectButton.innerText = 'Disconnect Wallet';
+        disconnectButton.innerText = 'Disconnect';
         walletButton.parentElement.appendChild(disconnectButton);
     }
+    */
 
+    /*
     function toggleMenuVisibility(isConnected) {
         const menuItems = navMenu.querySelectorAll('li, .nav-container');
         menuItems.forEach(item => {
@@ -31,6 +35,7 @@ function initializeWalletConnect() {
         walletButton.style.display = 'block';
         disconnectButton.style.display = isConnected ? 'block' : 'none';
     }
+    */
 
     async function checkWalletConnection() {
         if (typeof window.ethereum !== 'undefined') {
@@ -40,7 +45,7 @@ function initializeWalletConnect() {
                     const walletAddress = accounts[0];
                     updateWalletDisplays(`Connected: ${walletAddress}`)
                     localStorage.setItem('connectedWallet', walletAddress);
-                    toggleMenuVisibility(true);
+                    //toggleMenuVisibility(true);
                     return;
                 }
             } catch (err) {
@@ -49,7 +54,7 @@ function initializeWalletConnect() {
         }
         localStorage.removeItem('connectedWallet');
         updateWalletDisplays('Wallet Not Connected');
-        toggleMenuVisibility(false);
+        //toggleMenuVisibility(false);
     }
 
     checkWalletConnection();
@@ -61,7 +66,7 @@ function initializeWalletConnect() {
                 const walletAddress = accounts[0];
                 updateWalletDisplays(`Connected: ${walletAddress}`)
                 localStorage.setItem('connectedWallet', walletAddress);
-                toggleMenuVisibility(true);
+                //toggleMenuVisibility(true);
                 alert("Web3 Wallet Connected");
             } catch (err) {
                 console.error('Connection failed:', err);
@@ -75,7 +80,7 @@ function initializeWalletConnect() {
     disconnectButton.addEventListener('click', () => {
         localStorage.removeItem('connectedWallet');
         updateWalletDisplays('Wallet Not Connected');
-        toggleMenuVisibility(false);
+        //toggleMenuVisibility(false);
         alert("Wallet Disconnected");
     });
 
@@ -84,12 +89,12 @@ function initializeWalletConnect() {
             if (accounts.length === 0) {
                 localStorage.removeItem('connectedWallet');
                 updateWalletDisplays('Wallet Not Connected');
-                toggleMenuVisibility(false);
+                //toggleMenuVisibility(false);
             } else {
                 const walletAddress = accounts[0];
                 updateWalletDisplays(`Connected: ${walletAddress}`)
                 localStorage.setItem('connectedWallet', walletAddress);
-                toggleMenuVisibility(true);
+                //toggleMenuVisibility(true);
             }
         });
     }
