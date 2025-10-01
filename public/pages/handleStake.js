@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Fetch projects from the database 
     async function fetchProjects() {
-      const res = await fetch('http://localhost:4000/api/get-all-projects', {
+      //const res = await fetch('http://localhost:4000/api/get-all-projects', {
+      const res = await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/get-all-projects', {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
       });

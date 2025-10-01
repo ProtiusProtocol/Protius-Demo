@@ -10,7 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Fetch projects from the database 
     async function fetchProjects(walletAddress) {
-      const res = await fetch('http://localhost:4000/api/get-projects', {
+      //const res = await fetch('http://localhost:4000/api/get-projects', {
+      const res = await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/get-projects', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ walletAddress })
@@ -51,7 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Send user selection to the API endpoint for updating project phases
     function sendData ( owner, pname, title ){
 
-        fetch('http://localhost:4000/api/devphase', {
+        //fetch('http://localhost:4000/api/devphase', {
+        fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/devphase', {
             method: 'POST',
             headers: {'content-type': 'application/json'},
             body: JSON.stringify({ owner, pname, title })
