@@ -1,19 +1,64 @@
 /* Homepage ______________________________________________*/
-.homepage-video-div {
-  width: 100%;
-  height: auto;
+
+.home-hero {
+  position: relative;
+  height: 80vh;
+  overflow: hidden;
   display: flex;
-  justify-content: center;  
-  align-items: center;      
-  background-color: #000;   
+  align-items: center;        /* vertical centering */
+  justify-content: center;    /* horizontal centering */
+  text-align: center;
 }
 
-.homepage-video {
-  /*width: 20vw; */             
-  max-width: 100%;
-  height: auto;
-  justify-content: center; 
-  border-radius: 12px;     
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.home-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 100vh;
+  /*max-height: 50vh;*/
+  margin: 0 auto;
+  padding: 2rem;
+  /*padding-top: 20vh;
+  padding-bottom: 20vh;
+  text-align: center;
+  backdrop-filter: blur(2px);     blur the background video 
+  -webkit-backdrop-filter: blur(8px); /* for Safari */
+  border-radius: 10px;
+  color: #fff;
+}
+
+.home-hero-content h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #fff;
+  /*padding-left: 5vw;*/
+}
+
+.home-hero-content p {
+  font-size: 2rem;
+  /*margin-bottom: 2rem;*/
+  color: #ffffff;
+  /*padding-left: 5vw;*/
+}
+
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); 
+  z-index: 1;
 }
 
 
