@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../styles/dao.css">
+    <link rel="stylesheet" href="../styles/global.css">
     <link rel="stylesheet" href="../styles/menu_styles.css">
     <link rel="stylesheet" href="../styles/account_styles.css">
     <link rel="stylesheet" href="../styles/global_styles.css">
@@ -21,55 +21,36 @@
             <div>
                 <img class="logo" src="../images/protius_protocol_logo.jpg" alt="Logo">
             </div>
-            <a href="#" class="button" onclick="showSection('overall_account_page')"> Connect </a>
+            <a href="connect" class="button"> Connect </a>
         </header>
 
         <div style="height: 1cm;"></div>
 
-        
-        <!-- Row 1 -->
-        <div class="homepage-video-div">
-            <video 
-                src="../images/renewable_energy_video.mp4" 
-                class="homepage-video" 
-                autoplay 
-                muted 
-                loop 
-                playsinline>
-            </video>
-        </div>
-
-        <hr>
-        
         <!-- Header -->       
         <h1 style="text-align: center;"> Protius App </h1>
         <p style="text-align: center;"> Welcome to the Protius Protocol <i> Demo </i> </p>
+        <hr>
 
+        <!-- Row 1 -->
+        <section class="home-hero">
+            <video 
+                src="../images/renewable_energy_video.mp4" type="video/mp4"
+                autoplay muted loop playsinline preload="auto" class="background-video">
+                <source src="../renewable_energy_video.mp4" type="video/mp4" />
+            </video>
 
-        <div id="overall_account_page" class="dashboard-section" style="display:none;">
-            <div class="account_page_container">
-                <!-- Password Login Section -->
-                <div class="column left">
-                    <h2>Login with Password</h2>
-                    <input type="text" id="login-email" placeholder="Email"> 
-                    <input type="password" id="login-password" placeholder="Password">
-                    <a class="button" href="user-dashboard">Login</a>
-                </div>
-                
-                <!-- Wallet Connection Section -->
-                <div class="column left">
-                    <h2>Connect Your Wallet</h2>
-                    <div style="display: flex; flex-direction: column;">
-                        <a class="button" id="connectWalletButton">Connect Wallet</a>
-                        <p id="walletAddress" style="color: red; font-style: italic; margin-top: 0.5px; font-size: 0.7rem; text-align: center;">
-                            Wallet Not connected
-                        </p>
-                        <a class="button" id="disconnectWalletButton">Disconnect Wallet</a>
-                    </div>
-                </div>
- 
+            <div class="video-overlay"></div>
+
+            <div class="home-hero-content">
+                <p>
+                    Imagine a World in which a global community works together 
+                    to solve problems, to develop renewable energy opportunities.
+                    Now imagine yourself in that communtiy.
+                </p>
+                <a href="connect" class="button" style="background-color: white; color: black;"> Connect </a>
+
             </div>
-        </div>
+        </section>
 
 
         <!-- Footer -->
