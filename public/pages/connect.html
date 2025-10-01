@@ -1,0 +1,207 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../styles/global.css">
+    <link rel="stylesheet" href="../styles/menu_styles.css">
+    <link rel="stylesheet" href="../styles/account_styles.css">
+    <link rel="stylesheet" href="../styles/global_styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+
+<body id="page_body">
+
+    <!-- Main Content -->
+    <div class="main-content">
+        
+        <!-- Header -->
+        <header id="page_header">
+            <div>
+                <img class="logo" src="../images/protius_protocol_logo.jpg" alt="Logo">
+            </div>
+        </header>
+
+        <div style="height: 1cm;"></div>
+
+        <!-- Header -->       
+        <h1 style="text-align: center;"> Protius App </h1>
+        <p style="text-align: center;"> Welcome to the Protius Protocol <i> Demo </i> </p>
+
+        <hr>
+
+        <!-- Row 1 -->
+        <div id="overall_account_page" class="dashboard-section">
+            <div class="account_page_container">
+                <!-- Password Login Section -->
+                <div class="column left">
+                    
+                  <h2>Connect to Protius</h2>
+
+                  <div style="display: flex;">
+                    <div>
+                      <img src="../images/vecteezy_digital-wallet-isometric_.jpg" style="height: 20vh; width: auto;">
+                    </div>
+          
+                    <p style="text-align: left;"> 
+                      If you haven't already connected your wallet, you can do so below before 
+                      logging in with your username and password. Right now, only Metamask wallets are supported,
+                      but we are working on expanding this coverage to give you even more options.
+                    </p>
+                  </div>
+                  
+
+
+                  <!-- Wallet Connection Section -->
+                  <h4>Connect Your Wallet</h4>
+                  <!--
+                  <div style="display: flex; flex-direction: column;">
+                      <a class="button" id="connectWalletButton">Connect Wallet</a>
+                      <p id="walletAddress" style="color: red; font-style: italic; margin-top: 0.5px; font-size: 0.7rem; text-align: center;">
+                          Wallet Not connected
+                      </p>
+                      <a class="button" id="disconnectWalletButton">Disconnect Wallet</a>
+                  </div>
+                  -->
+                  <div style="display: flex;">
+                    <div div style="display: flex; flex-direction: column; padding-top: 5vh;">
+                      <a class="button" id="connectWalletButton">Connect Wallet</a>
+                      <p id="walletAddress" style="color: red; font-style: italic; margin-top: 0.5px; font-size: 0.7rem; text-align: center;">
+                          Wallet Not connected
+                      </p>
+                      <a class="button" id="disconnectWalletButton">Disconnect Wallet</a>
+                    </div>
+                    
+                    <div>
+                      <img src="../images/vecteezy_fox-head-logo-abstract-colorful-illustration-design_48941401.jpg" style="height: 30vh; width: auto; padding-top: 2vh;">
+                    </div>
+                  </div>
+
+                  <div style="height: 1cm;"></div>
+
+                  <h4>Login with Password</h4>
+                  <form id="login-form">
+                    <input type="text" id="login-email" placeholder="Email" required> 
+                    <input type="password" id="login-password" placeholder="Password" required>
+                    <button type="submit">Log In</button> <button id="logout-btn">Log Out</button>
+                  </form>
+
+                  <div style="height: 1cm;"></div>
+                </div>
+                
+                <!-- Sign Up Section -->
+                <div class="column left">
+                  <div>
+                    <h2>Signup</h2>
+
+                    <p style="text-align: left;"> 
+                      Join the growing Protius Community today, sign up to get started. 
+                    </p>
+
+                    <form id="signup-form">
+                      <input id="signup-email" type="email" placeholder="Email" required>
+                      <input id="signup-password" type="password" placeholder="Password" required>
+                      <button type="submit">Sign Up</button>
+                    </form>
+                  </div>
+
+                  <div style="padding-top: 5vh;">
+                    <img src="../images/pexels-pixabay-414837_windmill.jpg" style="width:100%; height: auto;">
+                  </div>
+                </div>
+ 
+                <!--<div id="status"></div>-->
+            </div>
+        </div>
+
+
+        <!-- Footer -->
+        <footer id="page_footer">
+            <p> © Protius Protocol 2025 </p>
+        </footer>
+    </div>
+
+    <script src="./pages/connectWallet.js"></script>
+    <!--<script src="./pages/login.js"></script>
+    <script type="module" src="./pages/auth.js"></script>
+    <script type="module" src="./pages/login.js"></script>-->
+
+
+    <script>
+        //document.getElementById('nav-container').innerHTML = data;
+        initializeWalletConnect();
+    </script>
+
+
+    <!-- Show Login Sections -->
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.dashboard-section');
+            sections.forEach(sec => sec.style.display = 'none');
+
+            const target = document.getElementById(sectionId);
+            if (target) target.style.display = 'block';
+            }
+    </script>
+
+    <script type="module">
+      // js/auth.js
+      import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+      const supabaseUrl = 'https://oaecaccsvnxhqhhbuiqm.supabase.co'
+      const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9hZWNhY2Nzdm54aHFoaGJ1aXFtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg3NTAzNDEsImV4cCI6MjA3NDMyNjM0MX0.wD3ccet4TPdpzZQA1k78v82nTQMdTaPyIlWxkqV35zQ'
+
+      export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+
+      // DOM elements
+      const signupForm = document.getElementById('signup-form')
+      const loginForm = document.getElementById('login-form')
+      const logoutBtn = document.getElementById('logout-btn')
+      const statusDiv = document.getElementById('status')
+
+      // Signup
+      signupForm.addEventListener('submit', async (e) => {
+          e.preventDefault()
+          const email = document.getElementById('signup-email').value
+          const password = document.getElementById('signup-password').value
+          const { data, error } = await supabase.auth.signUp({ email, password })
+          statusDiv.textContent = error ? `Error: ${error.message}` : 'Signup successful! Check your email.'
+      })
+
+      // Login
+      loginForm.addEventListener('submit', async (e) => {
+          e.preventDefault()
+          const email = document.getElementById('login-email').value
+          const password = document.getElementById('login-password').value
+          const { data, error } = await supabase.auth.signInWithPassword({ email, password })
+          //statusDiv.textContent = error ? `Error: ${error.message}` : `Logged in as ${data.user.email}`
+          if (error) {
+            statusDiv.textContent = `Eror: ${error.message}`;
+          } else {
+            alert('Logged in successfully!')
+            window.location.href = './user-dashboard';
+          }
+      });
+
+      // Logout
+      logoutBtn.addEventListener('click', async () => {
+          const { error } = await supabase.auth.signOut()
+          statusDiv.textContent = error ? `Error: ${error.message}` : 'Logged out successfully'
+      })
+
+      // Auth state listener
+      supabase.auth.onAuthStateChange((event, session) => {
+          console.log(event, session)
+          //if (session?.user) {
+          //statusDiv.textContent = `Logged in as ${session.user.email}`
+          //}
+      })
+    </script>
+
+
+</body>
+</html>
