@@ -4,10 +4,12 @@ function initializeWalletConnect() {
     //const navMenu = document.querySelector('.nav-container');
     const disconnectButton = document.getElementById('disconnectWalletButton');
 
+    /*
     if (!walletButton ){ //|| !navMenu) {
         console.error('Wallet or menu elements not found.');
         return;
     }
+    */
 
     const walletDisplays = document.querySelectorAll('#walletAddress, .walletAddress');
 
