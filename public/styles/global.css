@@ -1,0 +1,124 @@
+/* Global Styles */
+#page_body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+#dashboard-page-body{
+      
+    font-family: Arial, sans-serif;
+    background-color: rgb(255, 255, 255);
+    margin: 0;
+    padding: 0;
+    color: #333;
+    
+
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    overflow: auto;
+}
+
+h1, h2, h3 {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    color: rgb(5, 48, 190);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Header Section with Logo and Menu */
+#page_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    width: 5vw;
+    height: auto;
+}
+
+#page_header nav {
+    display: flex;
+    gap: 20px;
+}
+
+#page_header nav a {
+    color: rgb(0, 0, 0);
+    font-size: 1.2rem;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#page_header nav a:hover {
+    background-color: rgb(194, 118, 5);
+    color: white;
+}
+
+
+/* Row Layout */
+.row {
+    padding: 40px 20px;
+    text-align: left;
+}
+
+.main-content {
+    /*margin-left: 250px;*/
+    padding: 40px 20px;
+}
+
+button {
+    padding: 12px 25px;
+    background-color: rgb(5, 48, 190);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: rgb(194, 118, 5);
+}
+
+.button {
+    padding: 12px 25px;
+    background-color: rgb(5, 48, 190);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: rgb(194, 118, 5);
+}
+
+
+
+/* Page Footer */
+#page_footer {
+    background-color: #f8f8f8;
+    padding: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 40px;
+}
+
+
