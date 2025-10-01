@@ -27,16 +27,6 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public'))); 
 app.use('/smartcontracts', express.static(path.join(__dirname, 'smartcontracts')));
 
-//Database configuration (MySQL) 
-/*
-const dbconfig = {
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    password: 'project@2025',
-    database: 'protius'
-  }
-*/
 
 //Web socket
 io.on('connection', socket => {
