@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () =>{
             body: JSON.stringify({ owner, newName, newDeveloper, finance, devContribute })
             })
 
+        /*
         fetch("http://localhost:4000/api/newevent", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -33,6 +34,8 @@ document.addEventListener('DOMContentLoaded', () =>{
                 timestamp: new Date().toISOString().slice(0, 19).replace('T', ' ')
                 })
             });
+            */
+        
     };
         
 

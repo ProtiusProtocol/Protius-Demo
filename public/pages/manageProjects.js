@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let selectedId = null;
 
   async function fetchProjects() {
-    const res = await fetch('http://localhost:4000/api/getallProjects');
+    const res = await fetch('http://localhost:4000/api/get-all-projects');
     const data = await res.json();
     return data.projects || [];
   }
@@ -111,3 +111,4 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
 });
+

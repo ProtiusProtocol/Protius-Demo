@@ -10,22 +10,25 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Fetch projects from the database 
     async function fetchProjects(walletAddress) {
-      const res = await fetch('http://localhost:4000/api/getProjects', {
+      const res = await fetch('http://localhost:4000/api/get-projects', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ walletAddress })
       });
       const data = await res.json();
+      //console.log('[API RESPONE]', data);
+      //console.log('[API RESPONE2]', data.projects);
+
       return data.projects || [];
     }
 
     // Populate dropdown menu with projects
-    async function populateDropdown(projects) {
+    function populateDropdown(prjcts) {
       const dropdown = document.getElementById('projectSelect');
-      projects.forEach(project => {
+      prjcts.forEach(project => {
         const opt = document.createElement('option');
-        opt.value = project.projectID;
-        opt.textContent = project.projectName;
+        opt.value = project.id;
+        opt.textContent = project.project_name;
         dropdown.appendChild(opt);
       });
     }
@@ -34,12 +37,16 @@ document.addEventListener('DOMContentLoaded', () => {
     async function init() {
       try {
         const projects = await fetchProjects(projectOwner);
-        await populateDropdown(projects);
+        console.log(['Fetch Project'], projects)
+        populateDropdown(projects);
       } catch (err) {
         alert('Error loading projects: ' + err.message);
       }
     }
     init();
+
+    //##########################################################################################################################
+
 
     // Send user selection to the API endpoint for updating project phases
     function sendData ( owner, pname, title ){
@@ -50,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
             body: JSON.stringify({ owner, pname, title })
         })
 
+        /*
         fetch("http://localhost:4000/api/newevent", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -61,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
               timestamp: new Date().toISOString().slice(0, 19).replace('T', ' ')
               })
           });
+          */
     }
 
 
@@ -78,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sendData( projectOwner, inputName, inputTitle );
         console.log(projectOwner, inputName, inputTitle );
         alert('Submitted');
-        location.reload();
+        //location.reload();
     });
 
 
@@ -90,3 +99,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+

@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fetch projects from the database 
     async function fetchProjects(walletAddress) {
-      const res = await fetch('http://localhost:4000/api/getProjects', {
+      const res = await fetch('http://localhost:4000/api/get-projects', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ walletAddress })
@@ -13,20 +13,20 @@ document.addEventListener('DOMContentLoaded', () => {
       return data.projects || [];
     }
 
-    // Populate dropdown menu with projects
-    async function createPortfolio(project) {
+    // Update Page with Portfolio Details 
+    function createPortfolio(project) {
         const portfolioItem = document.getElementById('portfolio-container');
         const container = document.createElement('div');
         container.className = "portfolio-element";
         container.innerHTML = `
             <div class="photo_card">
                 <img src="../images/pexels-shottrotter-735468.jpg"> 
-                <h3> ${project.projectName} </h3>
-                <p> ID: ${project.projectID} </p>
-                <p> Developer: ${project.projectDeveloper} </p>
-                <p> Status: ${project.projectStatus} </p>
-                <p> Finance Needs: ${project.projectFinance} </p>
-                <p> Developer Contribution: ${project.developerContribution} </p>
+                <h3> ${project.project_name} </h3>
+                <p> ID: ${project.id} </p>
+                <p> Developer: ${project.developer} </p>
+                <p> Finance Needs: ${project.finance} </p>
+                <p> Developer Contribution: ${project.dev_contribution} </p>
+                <p> Status: ${project.status} </p>
             </div>`;
 
         portfolioItem.appendChild(container);
@@ -35,9 +35,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Call the above functions
     async function init() {
         const projects = await fetchProjects(projectOwner);
-        const container = document.getElementById("portfolio-container");
+        //console.log(['FRONTEND'], projects[0])
+        const container = document.getElementById('portfolio-container');
         projects.forEach(p => {
-            container.appendChild(createPortfolio(p));
+            createPortfolio(p);
+            //container.appendChild(createPortfolio(p));
+            console.log(['TEST'], p)
         });
     }
     init();

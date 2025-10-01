@@ -4,7 +4,7 @@ const multer = require('multer');
 const publishData = require('./src/publishData');
 const ProjectDevelopmentPhase = require('./src/devphase');
 const ProjectPool = require('./src/projectPool');
-//const { insertProjectAndPhases } = require('./src/updateDatabase');
+const { insertProjectAndPhases } = require('./src/updateDatabase');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 const createProject = new ProjectDevelopmentPhase();
@@ -14,17 +14,21 @@ const { insertNewEvent } = require("./src/eventsRouter");
 //const { startChecking } = require("./src/poller");
 const http = require("http");
 const socketIO = require("socket.io");
+const {pool} = require('./src/initializeDB');
+
 
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
-const PORT = process.env.PORT || 4000;
+//const PORT = process.env.PORT || 4000;
+const PORT = 4000;
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public'))); 
 app.use('/smartcontracts', express.static(path.join(__dirname, 'smartcontracts')));
 
 //Database configuration (MySQL) 
+/*
 const dbconfig = {
     host: 'localhost',
     port: 3306,
@@ -32,6 +36,7 @@ const dbconfig = {
     password: 'project@2025',
     database: 'protius'
   }
+*/
 
 //Web socket
 io.on('connection', socket => {
@@ -87,6 +92,13 @@ app.get('/docs', (req, res) => {
 app.get('/invest', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/pages/invest.html'));
 })
+
+
+// GET Request to display the smart contracts page
+app.get('/connect', (req, res) => {
+    res.sendFile(path.join(__dirname, '/public/pages/connect.html'));
+})
+
 
 // GET Request to display the admin projects page
 app.get('/projects', (req, res) => {
@@ -177,45 +189,55 @@ app.post('/api/createproject', async (req, res) => {
 
 
 // POST request to retreive projects from database for a specific user
-app.post('/api/getprojects', async (req, res) => {
+app.post('/api/get-projects', async (req, res) => {
     const { walletAddress } = req.body;
-
+    //console.log('[TEST] GET PROJECTS FOR SPECIFIC USER', walletAddress)
+    
     if (!walletAddress) return res.status(400).json({error: "Wallet Address Required"});
 
     try {
-        const conn = await mysql.createConnection(dbconfig);
-        const [rows] = await conn.execute(
-            `SELECT * FROM projects WHERE projOwner =?`,
-            [walletAddress]
-        );
-        await conn.end();
+        const conn = await pool.connect()
+        const query = `SELECT * FROM projects_table WHERE owner = $1`;
+        const values = [walletAddress];
+
+        const result = await conn.query(query, values);
+
+        const rows = result.rows;
+
+        conn.release();
         return res.json({ projects: rows});
     } catch (err) {
         console.error('Database error:', err);
         return res.status(500).json({ error: 'Database query failed'});
     }
+        
 });
 
 
-// GET request to retreive All projects from database
-app.get('/api/getallprojects', async (req, res) => {
-
+// GET request to retreive All projects  (total) from database
+app.get('/api/get-all-projects', async (req, res) => {
+    //console.log('[TEST] GET PROJECTS API WORKING')
+    
     try {
-        const conn = await mysql.createConnection(dbconfig);
-        const [rows] = await conn.execute(
-            `SELECT * FROM projects`
-        );
-        await conn.end();
+        const conn = await pool.connect();
+        const result = await conn.query(`SELECT * FROM projects_table`);
+        const rows = result.rows;
+
+        conn.release();
+
         return res.json({ projects: rows});
     } catch (err) {
         console.error('Database error:', err);
         return res.status(500).json({ error: 'Database query failed'});
     }
+        
 });
 
 
 // GET request to retreive All project phases from database
 app.get('/api/getallphases', async (req, res) => {
+    console.log('getallphases')
+    /*
     const projectID = req.query.projectID;
     let conn;
     
@@ -231,44 +253,46 @@ app.get('/api/getallphases', async (req, res) => {
       } catch (err) {
           console.error('Database error:', err);
       }
+          */
 });
 
 
 // POST request to update phases in a project 
 app.post('/api/devphase', async (req, res) => {
     const { owner, pname, title } = req.body;
+    console.log('[TEST] GET PROJECTS FOR DEV PHASE')
+
+    
 
     if ( !owner || !pname || !title ) {
-        return res.status(400).json({ message: 'Missing title or pname in request' });
+        return res.status(400).json({ message: 'Missing owner, title or name in request' });
     }
     console.log( owner, pname, title );
 
     try {
-        const conn = await mysql.createConnection(dbconfig);
+        const conn = await pool.connect();
 
         // Begin transaction
-        await conn.beginTransaction();
+        //await conn.beginTransaction();
 
         // Update phase status to 'completed' where project owner, name, and title match
-        const [result] = await conn.execute(
+        const query =
             `UPDATE project_phases
-            SET phaseStatus = 'completed'
-            WHERE projectID = ? AND phaseName = ?`,
-            [pname, title]
-        );
+            SET  ${title} = 'completed'
+            WHERE id = $1`;
 
-        await conn.commit();
+        const values = [pname];
 
-        if (result.affectedRows === 0) {
-        return res.status(404).json({ message: 'No matching phase found to update' });
-        }
+        await conn.query(query, values);
+
+        conn.release();     
 
         res.status(200).json({ message: 'Phase status updated to completed' });
     } catch (err) {
         console.error('Database error:', err);
         return res.status(500).json({ error: 'Database query failed' });
     }
-
+    //#######################################################################
     
     /*
     const matchingProject = newProjectPool.getAllProjects().find(project =>
@@ -314,8 +338,10 @@ app.post('/api/newevent', async (req, res) => {
 });
 
 //POST request to get all events
+/*
 app.get('/api/events', async (req, res) => {
     const conn = await mysql.createConnection(dbconfig);
+    
     try {
         const [rows] = await conn.execute("SELECT * FROM events ORDER BY timestamp DESC LIMIT 100");
         res.json(rows);
@@ -324,12 +350,14 @@ app.get('/api/events', async (req, res) => {
         console.error("DB query failed:", err);
         res.status(500).send("DB query failed");
     }
+        
 });
+*/
 
 // POST request to record project decision
 app.post('/api/projectdecision', async (req, res) => {
     const { projectID, decision } = req.body;
-
+    /*
     const conn = await mysql.createConnection(dbconfig);
     try {
       await conn.execute(
@@ -341,9 +369,10 @@ app.post('/api/projectdecision', async (req, res) => {
     } catch (err) {
       console.error("Failed to store event:", err.message);
     }
-
-
+      */
 });
+
+
 
 // Listening on the right port
 server.listen(PORT, () => {

@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Fetch projects from the database 
     async function fetchProjects() {
-      const res = await fetch('http://localhost:4000/api/getallProjects', {
+      const res = await fetch('http://localhost:4000/api/get-all-projects', {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
       });
@@ -12,18 +12,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Populate dropdown menu with projects
-    async function populateDropdown(projects) {
+    async function populateDropdown(prjcts) {
       const dropdown = document.getElementById('projectToInvest');
-      projects.forEach(project => {
+      prjcts.forEach(project => {
         const opt = document.createElement('option');
-        opt.value = project.projectID;
-        opt.textContent = project.projectName;
+        opt.value = project.id;
+        opt.textContent = project.project_name;
         dropdown.appendChild(opt);
       });
     }
 
     function displayProjectDetails(projects, selectedId) {
-        const project = projects.find(p => p.projectID == selectedId);
+        const project = projects.find(p => p.id == selectedId);
 
         const portfolioItem = document.getElementById('project-container');
         portfolioItem.innerHTML = '';
@@ -32,12 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
         container.innerHTML = `
             <div class="photo_card">
                 <img src="../images/pexels-shottrotter-735468.jpg"> 
-                <h4> ${project.projectName} </h4>
-                <p> <strong> ID: </strong> ${project.projectID} </p>
-                <p> <strong> Developer: </strong> ${project.projectDeveloper} </p>
-                <p> <strong> Status: </strong> ${project.projectStatus} </p>
-                <p><strong>Financing Target:</strong> ${project.projectFinance}</p>
-                <p><strong>Developer Contribution:</strong> ${project.developerContribution}</p>
+                <h4> ${project.project_name} </h4>
+                <p> <strong> ID: </strong> ${project.id} </p>
+                <p> <strong> Developer: </strong> ${project.developer} </p>
+                <p> <strong> Status: </strong> ${project.status} </p>
+                <p><strong>Financing Target:</strong> ${project.finance}</p>
+                <p><strong>Developer Contribution:</strong> ${project.dev_contribution}</p>
             </div>`;
         portfolioItem.appendChild(container);
     }
