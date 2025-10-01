@@ -9,14 +9,14 @@ class ProjectDevelopmentPhase {
         this.projectFinance = projectFinance,
         this.developerContribution = developerContribution,
         this.projectPhases = projectPhases,
-        this.projectID = `ID-${crypto.randomUUID()}`
+        this.projectID = crypto.randomUUID()
     }
     
 
     createNewProject( projOwner, projectName, projectDeveloper, projectFinance, developerContribution){
         let projectID, projectStatus, projectPhases;
 
-        projectID = `ID-${crypto.randomUUID()}`;
+        projectID = crypto.randomUUID();
         projectStatus = "Ongoing";
         projectPhases = {
             landTenure: "Pending",
