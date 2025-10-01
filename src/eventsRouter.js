@@ -1,4 +1,4 @@
-const {pool} = require('./src/initializeDB');
+const {pool} = require('./initializeDB');
 
 
 async function insertNewEvent(types, events, users, payloads, timestamps) {
