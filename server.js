@@ -20,8 +20,8 @@ const {pool} = require('./src/initializeDB');
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
-//const PORT = process.env.PORT || 4000;
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
+//const PORT = 4000;
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public'))); 
