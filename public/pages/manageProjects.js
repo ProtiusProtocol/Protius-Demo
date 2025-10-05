@@ -9,14 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   async function fetchProjects() {
     //const res = await fetch('http://localhost:4000/api/get-all-projects');
-    const res = await fetch('http://localhost:4000/api/get-all-projects');
+    const res = await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/get-all-projects');
     const data = await res.json();
     return data.projects || [];
   }
 
   async function fetchPhases(projectID) {
     //const res = await fetch(`http://localhost:4000/api/getallphases?projectID=${encodeURIComponent(projectID)}`);
-    const res = await fetch(`http://localhost:4000/api/getallphases?projectID=${encodeURIComponent(projectID)}`);
+    const res = await fetch(`https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/getallphases?projectID=${encodeURIComponent(projectID)}`);
     const data = await res.json();
     return data.phases || [];
   }
