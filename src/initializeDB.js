@@ -4,7 +4,7 @@ const pool = new Pool({
     host: process.env.HOST,  
     port: parseInt(process.env.SUPABASE_PORT, 10),
     database: process.env.DATABASE,
-    user: process.env.USER,
+    user: process.env.DB_USER,
     pool_mode: process.env.POOL_MODE,
     password: process.env.PASSWORD,  
     ssl: { rejectUnauthorized: false }
