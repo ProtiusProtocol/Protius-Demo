@@ -199,6 +199,32 @@
         </div>
 
 
+        <!-- # Connect Wallet Sub Section ### _____________________________ -->
+        <div id="wallet" class="dashboard-section" style="display:none;">
+            <!-- Header --> 
+            <h1> Connect Your Wallet </h1>
+            <div>
+                <p> 
+                   Connect your Web3 Wallet to get started with transactions.
+                   Right now, only Metamask wallets are supported,
+                    but we are working on expanding this coverage to give you even more options.
+                </p>
+            </div>
+
+           
+            <div>
+                <div div style="display: flex; flex-direction: column; padding-top: 5vh;">
+                    <a class="button" id="connectWalletButton">Connect Wallet</a>
+                    <p id="walletAddress" style="color: red; font-style: italic; margin-top: 0.5px; font-size: 0.7rem; text-align: center;">
+                        Wallet Not connected
+                    </p>
+                    <a class="button" id="disconnectWalletButton">Disconnect Wallet</a>
+                </div>
+            </div>
+        </div>
+
+
+
         <!-- # Invest Sub Section ### _____________________________ -->
         <div id="invest" class="dashboard-section" style="display:none;">
             <!-- Header -->       
@@ -468,106 +494,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-
-    <!-- DApp Performance Chart-->
-    <script>
-        const ctx = document.getElementById('dappPerformanceChart').getContext('2d');
-
-        const dappPerformanceChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-            datasets: [{
-            label: 'DApp Usage',
-            data: [20, 50, 80, 120, 100, 210],
-            fill: true,
-            backgroundColor: 'rgba(74, 144, 226, 0.2)',
-            borderColor: '#4a90e2',
-            tension: 0.3,
-            pointRadius: 4,
-            pointBackgroundColor: '#4a90e2'
-            }]
-        },
-        options: {
-            responsive: true,
-            interaction: {
-            mode: 'index',
-            intersect: false
-            },
-            plugins: {
-            tooltip: {
-                enabled: true
-            },
-            legend: {
-                display: true
-            }
-            },
-            scales: {
-            y: {
-                beginAtZero: true,
-                title: {
-                display: true,
-                text: 'Users'
-                }
-            },
-            x: {
-                title: {
-                display: true,
-                text: 'Month'
-                }
-            }
-            }
-        }
-        });
-    </script>
-
-
-    <!-- Transaction Volume Chart-->
-    <script>
-        const volumeChart = document.getElementById('transactionVolumeChart').getContext('2d');
-
-        const transactionVolumeChart = new Chart(volumeChart, {
-        type: 'bar',
-        data: {
-            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-            datasets: [{
-            label: 'Transaction Volume',
-            data: [180, 240, 200, 300, 280, 150, 220],
-            backgroundColor: '#4a90e2',
-            borderRadius: 6,
-            barThickness: 40,
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-            legend: {
-                display: false
-            },
-            tooltip: {
-                callbacks: {
-                label: context => `Volume: ${context.parsed.y} txns`
-                }
-            }
-            },
-            scales: {
-            y: {
-                beginAtZero: true,
-                title: {
-                display: true,
-                text: 'Transactions'
-                }
-            },
-            x: {
-                title: {
-                display: true,
-                text: 'Day of Week'
-                }
-            }
-            }
-        }
-        });
-    </script>
 
     <script>
         //document.getElementById('nav-container').innerHTML = data;
