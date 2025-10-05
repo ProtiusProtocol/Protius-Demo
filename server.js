@@ -186,15 +186,16 @@ app.post('/api/get-projects', async (req, res) => {
     if (!walletAddress) return res.status(400).json({error: "Wallet Address Required"});
 
     try {
-        const conn = await pool.connect()
+        //const conn = await pool.connect()
         const query = `SELECT * FROM projects_table WHERE owner = $1`;
-        const values = [walletAddress];
+        //const values = [walletAddress];
 
-        const result = await conn.query(query, values);
+        //const result = await conn.query(query, values);
+        const result = await pool.query(query, [walletAddress]);
 
         const rows = result.rows;
 
-        conn.release();
+        //conn.release();
         return res.json({ projects: rows});
     } catch (err) {
         console.error('Database error:', err);
@@ -209,11 +210,12 @@ app.get('/api/get-all-projects', async (req, res) => {
     //console.log('[TEST] GET PROJECTS API WORKING')
     
     try {
-        const conn = await pool.connect();
-        const result = await conn.query(`SELECT * FROM projects_table`);
+        //const conn = await pool.connect();
+        //const result = await conn.query(`SELECT * FROM projects_table`);
+        const result = await pool.query(`SELECT * FROM projects_table`);
         const rows = result.rows;
 
-        conn.release();
+        //conn.release();
 
         return res.json({ projects: rows});
     } catch (err) {
@@ -250,9 +252,7 @@ app.get('/api/getallphases', async (req, res) => {
 // POST request to update phases in a project 
 app.post('/api/devphase', async (req, res) => {
     const { owner, pname, title } = req.body;
-    console.log('[TEST] GET PROJECTS FOR DEV PHASE')
-
-    
+    //console.log('[TEST] GET PROJECTS FOR DEV PHASE')
 
     if ( !owner || !pname || !title ) {
         return res.status(400).json({ message: 'Missing owner, title or name in request' });
@@ -260,10 +260,7 @@ app.post('/api/devphase', async (req, res) => {
     console.log( owner, pname, title );
 
     try {
-        const conn = await pool.connect();
-
-        // Begin transaction
-        //await conn.beginTransaction();
+        //const conn = await pool.connect();
 
         // Update phase status to 'completed' where project owner, name, and title match
         const query =
@@ -273,9 +270,10 @@ app.post('/api/devphase', async (req, res) => {
 
         const values = [pname];
 
-        await conn.query(query, values);
+        //await conn.query(query, values);
+        await pool.query(query, values);
 
-        conn.release();     
+        //conn.release();     
 
         res.status(200).json({ message: 'Phase status updated to completed' });
     } catch (err) {
