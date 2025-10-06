@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const multer = require('multer');
+const cors = require('cors');
 //const publishData = require('./src/publishData');
 const ProjectDevelopmentPhase = require('./src/devphase');
 const ProjectPool = require('./src/projectPool');
@@ -16,7 +17,7 @@ const http = require("http");
 const socketIO = require("socket.io");
 const {pool} = require('./src/initializeDB');
 
-
+//const allowedOrigins = ['http://localhost:4000'];
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
@@ -26,7 +27,7 @@ const PORT = process.env.PORT || 4000;
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public'))); 
 app.use('/smartcontracts', express.static(path.join(__dirname, 'smartcontracts')));
-
+//app.use(cors({ origin: allowedOrigins}));
 
 //Web socket
 io.on('connection', socket => {
