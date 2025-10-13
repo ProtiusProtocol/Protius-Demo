@@ -202,24 +202,35 @@
         <!-- # Connect Wallet Sub Section ### _____________________________ -->
         <div id="wallet" class="dashboard-section" style="display:none;">
             <!-- Header --> 
-            <h1> Connect Your Wallet </h1>
-            <div>
-                <p> 
-                   Connect your Web3 Wallet to get started with transactions.
-                   Right now, only Metamask wallets are supported,
-                    but we are working on expanding this coverage to give you even more options.
-                </p>
-            </div>
+            <h1> Account </h1>
 
-           
-            <div>
-                <div div style="display: flex; flex-direction: column; padding-top: 5vh;">
+            <h2> Connect Your Wallet </h2>
+            <div> 
+                <div style="display: flex; flex-direction: column; padding-top: 5vh;">
+                    <p> 
+                        Connect your Web3 Wallet to get started with transactions.
+                        Right now, only Metamask wallets are supported,
+                        but we are working on expanding this coverage to give you even more options.
+                    </p>
+
                     <a class="button" id="connectWalletButton">Connect Wallet</a>
+                    
                     <p id="walletAddress" style="color: red; font-style: italic; margin-top: 0.5px; font-size: 0.7rem; text-align: center;">
                         Wallet Not connected
                     </p>
+                    
                     <a class="button" id="disconnectWalletButton">Disconnect Wallet</a>
                 </div>
+            </div>
+
+            <hr>
+
+            <h2> Check Your USDC Balance </h2>
+
+            <div id="usdc-balance-info">USDC Balance...</div>
+
+            <div style="display: flex; flex-direction: column; padding-top: 5vh;">    
+                <a class="button" id="request-usdc-balance"> Check Balance </a>
             </div>
         </div>
 
@@ -505,6 +516,7 @@
     <!-- Smart Contract Call: Hardhat Local Deployment -->
     <script type="module" src="../scripts/staking.js"></script>
     <script type="module" src="../pages/getContracts.js"></script>
+    <script type="module" src="../pages/checkUSDCBalance.js"></script>
 
 
     <script>
