@@ -229,7 +229,22 @@ app.get('/api/get-all-projects', async (req, res) => {
 
 // GET request to retreive All project phases from database
 app.get('/api/getallphases', async (req, res) => {
-    console.log('getallphases')
+    const { projectID } = req.body;
+    
+    try {
+        const query = `SELECT * FROM project_phases WHERE id =$1`;
+        
+        const values = [projectID];
+
+        const result = pool.query(query, values)
+
+        const rows = result.rows;
+
+        return res.json({ projects: rows});
+    } catch (err) {
+        console.error('Database error:', err);
+        return res.status(500).json({ error: 'Database query failed'});
+    }
     /*
     const projectID = req.query.projectID;
     let conn;
@@ -346,7 +361,7 @@ app.get('/api/events', async (req, res) => {
 // POST request to record project decision
 app.post('/api/projectdecision', async (req, res) => {
     const { projectID, decision } = req.body;
-    
+
     try {
        
         const query =
