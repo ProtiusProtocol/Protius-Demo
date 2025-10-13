@@ -79,8 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         dropdown.addEventListener('change', async (e) => {
         selectedId = e.target.value;
-        const project = projects.find(p => p.id === selectedId);
-        console.log('[TEST FOR]', project)
+        const project = projects.find(p => p.id === e.target.value);
+        console.log('[TEST FOR target.value]', e.target.value)
 
             if (project) {
                 try {
