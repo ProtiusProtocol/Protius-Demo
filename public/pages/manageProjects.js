@@ -54,16 +54,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function displayProjectDetails(project, phases) {
+  function displayProjectDetails(prj, phz) {
     container.innerHTML = `
       <div class="projectInfo">
-        <h4>${project.project_name}</h4>
-        <p><strong>ID:</strong> ${project.id}</p>
-        <p><strong>Developer:</strong> ${project.developer}</p>
-        <p><strong>Status:</strong> ${project.status}</p>
-        <p><strong>Financing Target:</strong> ${project.finance}</p>
+        <h4>${prj.project_name}</h4>
+        <p><strong>ID:</strong> ${prj.id}</p>
+        <p><strong>Developer:</strong> ${prj.developer}</p>
+        <p><strong>Status:</strong> ${prj.status}</p>
+        <p><strong>Financing Target:</strong> ${prj.finance}</p>
         <h4>Project Phases:</h4>
-        ${phases.map((phase, idx) => `
+        ${phz.map((phase, idx) => `
           <div class="phase-block">
             <h5>Phase ${idx + 1}</h5>
             ${Object.entries(phase).map(([key, val]) => `<p>${key}: ${val ?? ''}</p>`).join('')}
@@ -80,9 +80,12 @@ document.addEventListener('DOMContentLoaded', () => {
         dropdown.addEventListener('change', async (e) => {
         selectedId = e.target.value;
         const project = projects.find(p => p.id === selectedId);
+        console.log('[TEST FOR]', project)
+
             if (project) {
                 try {
                     const phases = await fetchPhases(project.id);
+                    console.log('[TEST FOR]', phases)
                     //console.log('Phases fetched:', phases);
                     displayProjectDetails(project, phases);
                 } catch (err) {
