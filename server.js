@@ -236,11 +236,11 @@ app.get('/api/getallphases', async (req, res) => {
         
         const values = [projectID];
 
-        const result = pool.query(query, values)
+        const result = await pool.query(query, values)
 
         const rows = result.rows;
 
-        return res.json({ projects: rows});
+        return res.json({ phases: rows});
     } catch (err) {
         console.error('Database error:', err);
         return res.status(500).json({ error: 'Database query failed'});
