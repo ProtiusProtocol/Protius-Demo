@@ -166,6 +166,33 @@
         </div>
 
         
+        <!-- # Connect Wallet Sub Section ### _____________________________ -->
+        <div id="wallet" class="dashboard-section" style="display:none;">
+            <!-- Header --> 
+            <h1> Account </h1>
+
+            <h2> Connect Your Wallet </h2>
+            <div> 
+                <div style="display: flex; flex-direction: column; padding-top: 5vh;">
+                    <p> 
+                        Connect your Web3 Wallet to get started with transactions.
+                        Right now, only Metamask wallets are supported,
+                        but we are working on expanding this coverage to give you even more options.
+                    </p>
+
+                    <a class="button" id="connectWalletButton">Connect Wallet</a>
+                    
+                    <p id="walletAddress" style="color: red; font-style: italic; margin-top: 0.5px; font-size: 0.7rem; text-align: center;">
+                        Wallet Not connected
+                    </p>
+                    
+                    <a class="button" id="disconnectWalletButton">Disconnect Wallet</a>
+                </div>
+            </div>
+
+            <hr>
+        </div>
+
         
         <!-- # Projects Sub Section ### _____________________________ -->
         <div id="projects" class="dashboard-section" style="display:none;">
@@ -190,16 +217,23 @@
         <div id="contracts" class="dashboard-section" style="display:none;">
             <!-- Header -->       
             <h1> Smart Contracts </h1>
-            <p> Overview of your Smart Contracts. </p>
+            <p> On this page you'll find a list of deployed Smart Contracts. You can view each Contract's details. </p>
 
+            <hr>
+            
+            <div id="contract-info-div"> Click on a contract below to see its info here. </div>
+            
+            <div style="height: 1cm;"></div>
+            
             <!-- Row 1 -->
             <div class="document-grid">
                 <div class="document-card">
                     <img src="../images/lorem_ipsum_image.jpg" alt="Document">
-                    <div class="desc">Staking for XYZ</div>
-                    <a href="#">View</a>
+                    <div class="desc">Staking Contract </div>
+                    <a id="staking-contract" href="#">View</a>
                 </div>
 
+                <!--
                 <div class="document-card">
                     <img src="../images/lorem_ipsum_image.jpg" alt="Document">
                     <div class="desc">Staking for ABC</div>
@@ -217,6 +251,7 @@
                     <div class="desc">Project Two Trade</div>
                     <a href="#">View</a>
                 </div>
+                -->
 
             </div>
         </div>
@@ -249,13 +284,12 @@
 
     <!-- Scripts -->
     <script src="./pages/connectWallet.js"></script>
-    <script src="./pages/dashboard.js"></script>
     <script src="./pages/updatePortfolio.js"></script>
     <script src="./pages/manageProjects.js"></script>
-    <script src="./pages/create.js"></script>
-    <script src="./pages/createContract.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script type="module" src="../pages/getContracts.js"></script>
 
 
     <!-- DApp Performance Chart-->

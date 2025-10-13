@@ -651,6 +651,7 @@ const ERC20_ABI=[
     // Connect to wallet
     let signer, contract, usdc;
 
+    /*
     async function getWallet(){
         const accounts = await provider.listAccounts(); // returns array of addresses
         signer = await provider.getSigner(accounts[0].address);
@@ -658,6 +659,16 @@ const ERC20_ABI=[
         contract = new Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
         usdc = new Contract(USDC_ADDRESS, ERC20_ABI, signer);
     };
+    */
+    async function getWallet(){
+      const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+      console.log('[TEST: Wallet Address =]', walletAddress);  
+      if (accounts.length > 0) {
+            const walletAddress = accounts[0];
+            console.log('[TEST: Wallet Address =]', walletAddress);
+            return
+          }
+    }
     
 
 
