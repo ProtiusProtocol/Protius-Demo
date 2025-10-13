@@ -346,19 +346,26 @@ app.get('/api/events', async (req, res) => {
 // POST request to record project decision
 app.post('/api/projectdecision', async (req, res) => {
     const { projectID, decision } = req.body;
-    /*
-    const conn = await mysql.createConnection(dbconfig);
+    
     try {
-      await conn.execute(
-        "UPDATE projects SEt approval =? WHERE projectID =?",
-        [ decision, projectID ]
-      );
-      
-      console.log("Event logged" );
+       
+        const query =
+            `UPDATE project_table
+            SET  ${decision} = 'approved'
+            WHERE id = $1`;
+
+        const values = [projectID];
+
+        //await conn.query(query, values);
+        await pool.query(query, values);
+
+        //conn.release();     
+
+        res.status(200).json({ message: 'Phase status updated to completed' });
     } catch (err) {
-      console.error("Failed to store event:", err.message);
+        console.error('Database error:', err);
+        return res.status(500).json({ error: 'Database query failed' });
     }
-      */
 });
 
 
