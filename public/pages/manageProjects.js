@@ -48,8 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
     dropdown.innerHTML = '<option value="">Select a project</option>';
     projects.forEach(project => {
       const opt = document.createElement('option');
-      opt.value = project.projectID;
-      opt.textContent = project.projectName;
+      opt.value = project.id;
+      opt.textContent = project.project_name;
       dropdown.appendChild(opt);
     });
   }
@@ -57,12 +57,11 @@ document.addEventListener('DOMContentLoaded', () => {
   function displayProjectDetails(project, phases) {
     container.innerHTML = `
       <div class="projectInfo">
-        <h4>${project.projectName}</h4>
-        <p><strong>ID:</strong> ${project.projectID}</p>
-        <p><strong>Developer:</strong> ${project.projectDeveloper}</p>
-        <p><strong>Status:</strong> ${project.projectStatus}</p>
-        <p><strong>Financing Target:</strong> ${project.projectFinance}</p>
-        <p><strong>Approval:</strong> ${project.approval}</p>
+        <h4>${project.project_name}</h4>
+        <p><strong>ID:</strong> ${project.id}</p>
+        <p><strong>Developer:</strong> ${project.developer}</p>
+        <p><strong>Status:</strong> ${project.status}</p>
+        <p><strong>Financing Target:</strong> ${project.finance}</p>
         <h4>Project Phases:</h4>
         ${phases.map((phase, idx) => `
           <div class="phase-block">
@@ -80,10 +79,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         dropdown.addEventListener('change', async (e) => {
         selectedId = e.target.value;
-        const project = projects.find(p => p.projectID === selectedId);
+        const project = projects.find(p => p.id === selectedId);
             if (project) {
                 try {
-                    const phases = await fetchPhases(project.projectID);
+                    const phases = await fetchPhases(project.id);
                     //console.log('Phases fetched:', phases);
                     displayProjectDetails(project, phases);
                 } catch (err) {
