@@ -8,30 +8,38 @@ document.addEventListener('DOMContentLoaded', () => {
   let selectedId = null;
 
   async function fetchProjects() {
-    //const res = await fetch('http://localhost:4000/api/get-all-projects');
-    const res = await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/get-all-projects');
+    const res = await fetch('http://localhost:4000/api/admin-get-all-projects');
+    //const res = await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/get-all-projects');
     const data = await res.json();
     return data.projects || [];
   }
 
+
   async function fetchPhases(projectID) {
-    //const res = await fetch(`http://localhost:4000/api/getallphases?projectID=${encodeURIComponent(projectID)}`);
-    const res = await fetch(`https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/getallphases?projectID=${encodeURIComponent(projectID)}`);
-    const data = await res.json();
-    return data.phases || [];
-  }
-
-  async function protiusReview ( projectID, decision ) {
-
-    //await fetch('http://localhost:4000/api/projectdecision', {
-    await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/projectdecision', {
+    const res = await fetch('http://localhost:4000/api/get-all-phases', {
+    //await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/projectdecision', {
         method: 'POST',
         headers: {'content-Type' : 'application/json'},
-        body: JSON.stringify({ projectID, decision })
+        body: JSON.stringify({ projectID })
     });
 
-    //await fetch("http://localhost:4000/api/newevent", {
-    await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/newevent', {
+    const data = await res.json();
+    return data.phases;
+ 
+  }
+
+  async function protiusReview ( projectID, decision, apprvr ) {
+
+    await fetch('http://localhost:4000/api/project-decision', {
+    //await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/projectdecision', {
+        method: 'POST',
+        headers: {'content-Type' : 'application/json'},
+        body: JSON.stringify({ projectID, decision, apprvr })
+    });
+
+    /*
+    await fetch("http://localhost:4000/api/newevent", {
+    //await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/newevent', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -42,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
             timestamp: new Date().toISOString().slice(0, 19).replace('T', ' ')
             })
         });
+        */
   }
 
   function populateDropdown(projects) {
@@ -80,40 +89,44 @@ document.addEventListener('DOMContentLoaded', () => {
         dropdown.addEventListener('change', async (e) => {
         selectedId = e.target.value;
         const project = projects.find(p => p.id === e.target.value);
-        console.log('[TEST FOR target.value]', e.target.value)
 
         try {
-            const phases = await fetchPhases(e.target.value);
-            console.log('[TEST FOR]', phases)
-            //console.log('Phases fetched:', phases);
+            const phases = await fetchPhases(selectedId);
             displayProjectDetails(project, phases);
         } catch (err) {
             console.error('Error fetching phases:', err);
         }
             
-        });
+      });
     }
 
   init();
 
-    approveHTML.addEventListener('click', function () {
-        if (selectedId) {
-            console.log("approved");
-            protiusReview(selectedId, "approved")
-        } else {
-            console.warn("No project selected");
-        }
-        
-    })
+  approveHTML.addEventListener('click', async function () {
+    const projectOwner = localStorage.getItem('connectedWallet');
 
-    rejectHTML.addEventListener('click', function () {
-        if (selectedId) {
-            console.log("rejected");
-            protiusReview(selectedId, "rejected")
-        } else {
-            console.warn("No project selected");
-        }
-    })
+      if (selectedId) {
+          console.log("approved");
+          await protiusReview(selectedId, "approved", projectOwner)
+          location.reload();
+      } else {
+          console.warn("No project selected");
+      }
+      
+
+  })
+
+  rejectHTML.addEventListener('click', async function () {
+    const projectOwner = localStorage.getItem('connectedWallet');
+
+      if (selectedId) {
+          console.log("rejected");
+          await protiusReview(selectedId, "rejected", projectOwner)
+          location.reload();
+      } else {
+          console.warn("No project selected");
+      }
+  })
 
 });
 
