@@ -8,30 +8,30 @@ document.addEventListener('DOMContentLoaded', () => {
   let selectedId = null;
 
   async function fetchProjects() {
-    //const res = await fetch('http://localhost:4000/api/get-all-projects');
-    const res = await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/get-all-projects');
+    const res = await fetch('http://localhost:4000/api/get-all-projects');
+    //const res = await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/get-all-projects');
     const data = await res.json();
     return data.projects || [];
   }
 
   async function fetchPhases(projectID) {
-    //const res = await fetch(`http://localhost:4000/api/getallphases?projectID=${encodeURIComponent(projectID)}`);
-    const res = await fetch(`https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/getallphases?projectID=${encodeURIComponent(projectID)}`);
+    const res = await fetch(`http://localhost:4000/api/getallphases?projectID=${encodeURIComponent(projectID)}`);
+    //const res = await fetch(`https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/getallphases?projectID=${encodeURIComponent(projectID)}`);
     const data = await res.json();
     return data.phases || [];
   }
 
   async function protiusReview ( projectID, decision ) {
 
-    //await fetch('http://localhost:4000/api/projectdecision', {
-    await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/projectdecision', {
+    await fetch('http://localhost:4000/api/projectdecision', {
+    //await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/projectdecision', {
         method: 'POST',
         headers: {'content-Type' : 'application/json'},
         body: JSON.stringify({ projectID, decision })
     });
 
-    //await fetch("http://localhost:4000/api/newevent", {
-    await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/newevent', {
+    await fetch("http://localhost:4000/api/newevent", {
+    //await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/newevent', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

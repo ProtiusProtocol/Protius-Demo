@@ -234,9 +234,9 @@ app.get('/api/getallphases', async (req, res) => {
     try {
         const query = `SELECT * FROM project_phases WHERE id =$1`;
         
-        const values = [projectID];
+        //const values = [projectID];
 
-        const result = await pool.query(query, values)
+        const result = await pool.query(query, [projectID])
 
         const rows = result.rows;
 
