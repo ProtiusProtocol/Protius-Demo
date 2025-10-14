@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const multer = require('multer');
@@ -180,23 +181,15 @@ app.post('/api/createproject', async (req, res) => {
 
 
 // POST request to retreive projects from database for a specific user
-app.post('/api/get-projects', async (req, res) => {
+app.post('/api/get-wallet-assigned-projects', async (req, res) => {
     const { walletAddress } = req.body;
-    //console.log('[TEST] GET PROJECTS FOR SPECIFIC USER', walletAddress)
     
     if (!walletAddress) return res.status(400).json({error: "Wallet Address Required"});
 
     try {
-        //const conn = await pool.connect()
         const query = `SELECT * FROM projects_table WHERE owner = $1`;
-        //const values = [walletAddress];
-
-        //const result = await conn.query(query, values);
         const result = await pool.query(query, [walletAddress]);
-
         const rows = result.rows;
-
-        //conn.release();
         return res.json({ projects: rows});
     } catch (err) {
         console.error('Database error:', err);
@@ -207,13 +200,41 @@ app.post('/api/get-projects', async (req, res) => {
 
 
 // GET request to retreive All projects  (total) from database
+app.get('/api/admin-get-all-projects', async (req, res) => {
+    
+    try {
+        const result = await pool.query(`SELECT * FROM projects_table WHERE approval = 'pending'`);
+        const rows = result.rows;
+        return res.json({ projects: rows});
+    } catch (err) {
+        console.error('Database error:', err);
+        return res.status(500).json({ error: 'Database query failed'});
+    }
+});
+
+
+// GET projects approved for investment
+app.get('/api/get-approved-projects', async (req, res) => {
+    
+    try {
+        const result = await pool.query(`SELECT * FROM projects_table WHERE approval = 'approved'`);
+        const rows = result.rows;
+        return res.json({ projects: rows});
+    } catch (err) {
+        console.error('Database error:', err);
+        return res.status(500).json({ error: 'Database query failed'});
+    }
+});
+
+
+// GET request to retreive All projects  (total) from database
 app.get('/api/get-all-projects', async (req, res) => {
     //console.log('[TEST] GET PROJECTS API WORKING')
     
     try {
         //const conn = await pool.connect();
         //const result = await conn.query(`SELECT * FROM projects_table`);
-        const result = await pool.query(`SELECT * FROM projects_table`);
+        const result = await pool.query(`SELECT * FROM projects_table WHERE approval = 'approved'`);
         const rows = result.rows;
 
         //conn.release();
@@ -228,69 +249,37 @@ app.get('/api/get-all-projects', async (req, res) => {
 
 
 // GET request to retreive All project phases from database
-app.get('/api/getallphases', async (req, res) => {
-    const { projectID } = req.body;
+app.post('/api/get-all-phases', async (req, res) => {
+    const {projectID} = req.body;
     
     try {
         const query = `SELECT * FROM project_phases WHERE id =$1`;
-        
-        //const values = [projectID];
-
         const result = await pool.query(query, [projectID])
-
         const rows = result.rows;
-
         return res.json({ phases: rows});
     } catch (err) {
         console.error('Database error:', err);
         return res.status(500).json({ error: 'Database query failed'});
     }
-    /*
-    const projectID = req.query.projectID;
-    let conn;
-    
-      try {
-          conn = await mysql.createConnection(dbconfig);
-          const [rows] = await conn.execute(
-              `SELECT * FROM project_phases WHERE projectID =?`,
-              [projectID]
-          );
-          await conn.end();
-          //console.log(rows);
-          res.json({ phases: rows });
-      } catch (err) {
-          console.error('Database error:', err);
-      }
-          */
 });
 
 
 // POST request to update phases in a project 
 app.post('/api/devphase', async (req, res) => {
     const { owner, pname, title } = req.body;
-    //console.log('[TEST] GET PROJECTS FOR DEV PHASE')
 
     if ( !owner || !pname || !title ) {
         return res.status(400).json({ message: 'Missing owner, title or name in request' });
     }
-    console.log( owner, pname, title );
 
     try {
-        //const conn = await pool.connect();
-
-        // Update phase status to 'completed' where project owner, name, and title match
         const query =
             `UPDATE project_phases
             SET  ${title} = 'completed'
             WHERE id = $1`;
 
         const values = [pname];
-
-        //await conn.query(query, values);
         await pool.query(query, values);
-
-        //conn.release();     
-
         res.status(200).json({ message: 'Phase status updated to completed' });
     } catch (err) {
         console.error('Database error:', err);
@@ -359,24 +348,25 @@ app.get('/api/events', async (req, res) => {
 */
 
 // POST request to record project decision
-app.post('/api/projectdecision', async (req, res) => {
-    const { projectID, decision } = req.body;
+app.post('/api/project-decision', async (req, res) => {
+    const { projectID, decision, apprvr } = req.body;
 
     try {
        
         const query =
-            `UPDATE project_table
-            SET  ${decision} = 'approved'
+            `UPDATE projects_table
+            SET  approval = $2,
+            approver = $3
             WHERE id = $1`;
 
-        const values = [projectID];
+        const values = [projectID, decision, apprvr];
 
         //await conn.query(query, values);
         await pool.query(query, values);
 
         //conn.release();     
 
-        res.status(200).json({ message: 'Phase status updated to completed' });
+        res.status(200).json({ message: 'Project Decision Updated' });
     } catch (err) {
         console.error('Database error:', err);
         return res.status(500).json({ error: 'Database query failed' });
