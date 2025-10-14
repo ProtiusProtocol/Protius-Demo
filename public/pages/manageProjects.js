@@ -82,16 +82,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const project = projects.find(p => p.id === e.target.value);
         console.log('[TEST FOR target.value]', e.target.value)
 
-            if (project) {
-                try {
-                    const phases = await fetchPhases(project.id);
-                    console.log('[TEST FOR]', phases)
-                    //console.log('Phases fetched:', phases);
-                    displayProjectDetails(project, phases);
-                } catch (err) {
-                    console.error('Error fetching phases:', err);
-                }
-            }
+        try {
+            const phases = await fetchPhases(e.target.value);
+            console.log('[TEST FOR]', phases)
+            //console.log('Phases fetched:', phases);
+            displayProjectDetails(project, phases);
+        } catch (err) {
+            console.error('Error fetching phases:', err);
+        }
+            
         });
     }
 
