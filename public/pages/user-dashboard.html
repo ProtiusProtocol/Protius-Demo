@@ -177,7 +177,7 @@
 
                 <p> Any projects in your portfolio are listed below. If you're just getting started, bring a project onboard or invest in an existing project.</p>
                 
-                <div id="portfolio-container"></div>
+                <div id="users-portfolio-container" style="display: flex; flex-wrap: wrap; gap: 10px;"></div>
                 <!--##########################################____________________________-->
 
 
@@ -254,13 +254,13 @@
 
                     <div class="form-group">
                         <label for="textInput">Project Name:</label>
-                        <select id="projectToInvest">
+                        <select id="projects-to-invest">
                             <option value="" disabled selected>Select an option</option>
                         </select>
-                        <div id="projectDetails" style="margin-top: 1rem;"></div>
+                        <!--<div id="projectDetails" style="margin-top: 1rem;"></div> -->
                     </div>
 
-                    <div id="project-container"></div>
+                    <div id="approved-project-details"></div>
                     <div style="height: 1cm;"></div>
 
                     <label> Stake Amount </label>
@@ -496,24 +496,19 @@
         
     </div>
 
-    <!-- Unused Scripts for now -->
-    <!--<script src="./pages/login.js"></script>-->
-
 
 
     <!-- Scripts -->
-    <script src="./pages/connectWallet.js"></script>
-    <script src="./pages/updatePortfolio.js"></script>
-    <script src="./pages/manageProjects.js"></script>
     <script src="./pages/create.js"></script>
-    <script src="./pages/createContract.js"></script>
-    <script src="./pages/handleDevPhase.js"></script>
-    <script src="./pages/handleStake.js"></script>
+    <script src="./pages/connectWallet.js"></script>
+    <script src="./pages/show-user-portfolio.js"></script>
+    <script src="./pages/get-investment-projects.js"></script>
+    <script src="./pages/update-dev-phases.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/ethers@6/dist/ethers.umd.min.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
-    <!-- Smart Contract Call: Hardhat Local Deployment -->
+    <!-- Modules -->
     <script type="module" src="../scripts/staking.js"></script>
     <script type="module" src="../pages/getContracts.js"></script>
     <script type="module" src="../pages/checkUSDCBalance.js"></script>
