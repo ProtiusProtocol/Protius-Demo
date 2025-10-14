@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Fetch projects from the database 
     async function fetchProjects() {
-      //const res = await fetch('http://localhost:4000/api/get-all-projects', {
-      const res = await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/get-all-projects', {
+      const res = await fetch('http://localhost:4000/api/get-all-projects', {
+      //const res = await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/get-all-projects', {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
       });
@@ -14,12 +14,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Populate dropdown menu with projects
     async function populateDropdown(prjcts) {
-      const dropdown = document.getElementById('projectToInvest');
+      const dropdown = document.getElementById('projects-to-invest');
       prjcts.forEach(project => {
         const opt = document.createElement('option');
         opt.value = project.id;
         opt.textContent = project.project_name;
-        dropdown.appendChild(opt);
+
+        try{
+            dropdown.appendChild(opt);
+        }catch (err){
+            console.error(err)
+        }
+        
       });
     }
 
@@ -40,7 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p><strong>Financing Target:</strong> ${project.finance}</p>
                 <p><strong>Developer Contribution:</strong> ${project.dev_contribution}</p>
             </div>`;
-        portfolioItem.appendChild(container);
+        //portfolioItem.appendChild(container);
+        try{
+            portfolioItem.appendChild(container);
+        }catch (err){
+            console.error(err)
+        }
     }
 
     // Call the above functions
