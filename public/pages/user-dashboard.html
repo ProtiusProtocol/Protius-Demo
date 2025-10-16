@@ -232,6 +232,14 @@
             <div style="display: flex; flex-direction: column; padding-top: 5vh;">    
                 <a class="button" id="request-usdc-balance"> Check Balance </a>
             </div>
+
+            <h2> Check Connected Blockchain Network </h2>
+
+            <div id="connected-network">Connected Network...</div>
+
+            <div style="display: flex; flex-direction: column; padding-top: 5vh;">    
+                <a class="button" id="request-network-info"> Check Network </a>
+            </div>
         </div>
 
 
@@ -273,7 +281,7 @@
                     with the value of the tokens indicated. Please verify the project information and financial
                     implications.
                 </p>
-                <button id="submitStakeButton"> Stake </button> <button id="cancelStakeButton"> Cancel </button> 
+                <button id="submit-stake-button"> Stake </button> <button id="cancelStakeButton"> Cancel </button> 
                 <pre id="output"></pre>
 
             </div>
@@ -504,14 +512,18 @@
     <script src="./pages/show-user-portfolio.js"></script>
     <script src="./pages/get-investment-projects.js"></script>
     <script src="./pages/update-dev-phases.js"></script>
+    <script src="./pages/check-network.js"></script>
     
+
     <script src="https://cdn.jsdelivr.net/npm/ethers@6/dist/ethers.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <!-- Modules -->
-    <script type="module" src="../scripts/staking.js"></script>
-    <script type="module" src="../pages/getContracts.js"></script>
-    <script type="module" src="../pages/checkUSDCBalance.js"></script>
+    <!-- <script type="module" src="../scripts/staking.js"></script> 
+    <script type="module" src="../pages/getContracts.js"></script> -->
+    <script type="module" src="../pages/handleStake.js"></script>
+    <script type="module" src="../pages/check-usdc-balance.js"></script> 
+    <script type="module" src="../scripts/process-stake.js"></script>
 
 
     <script>
