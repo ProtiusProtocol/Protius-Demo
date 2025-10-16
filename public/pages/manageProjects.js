@@ -112,10 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
           console.warn("No project selected");
       }
-      
-
   })
 
+  
   rejectHTML.addEventListener('click', async function () {
     const projectOwner = localStorage.getItem('connectedWallet');
 
