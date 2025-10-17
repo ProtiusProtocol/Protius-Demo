@@ -400,7 +400,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // 1. Ask backend to prepare the staking transaction
-      const res = await fetch('http://localhost:4000/api/prepare-stake', {
+      //const res = await fetch('http://localhost:4000/api/prepare-stake', {
+      const res = await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/prepare-stake', {
+
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ wallet: walletAddress, amount: rawValue })

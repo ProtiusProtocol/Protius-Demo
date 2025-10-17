@@ -855,7 +855,7 @@ app.post('/api/vote', (req, res) => {
 
 
 // POST request to create new project
-app.post('/api/createproject', async (req, res) => {
+app.post('/api/create-project', async (req, res) => {
     const { owner, newName, newDeveloper, finance, devContribute } = req.body;
 
     if (!owner || !newName || !newDeveloper || !finance || !devContribute) {

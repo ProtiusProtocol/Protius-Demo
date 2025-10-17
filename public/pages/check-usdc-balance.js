@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     async function showBalance() {
       try {
         const { walletAddress } = await getWallet();
-        const res = await fetch(`http://localhost:4000/api/balance/${walletAddress}`);
+        //const res = await fetch(`http://localhost:4000/api/balance/${walletAddress}`);
+        const res = await fetch(`https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/balance/${walletAddress}`);
         const data = await res.json();
         balanceDiv.textContent = `USDC Balance: ${data.balance}`;
       } catch (err) {

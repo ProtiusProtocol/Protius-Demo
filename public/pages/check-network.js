@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     async function checkNetwork(){
-      const res = await fetch('http://localhost:4000/api/check-network');
-      //const res = await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/createproject', {
+      //const res = await fetch('http://localhost:4000/api/check-network');
+      const res = await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/check-network');
 
       const data = await res.json();
       console.log(data)

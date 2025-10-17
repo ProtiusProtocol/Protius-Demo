@@ -8,16 +8,16 @@ document.addEventListener('DOMContentLoaded', () => {
   let selectedId = null;
 
   async function fetchProjects() {
-    const res = await fetch('http://localhost:4000/api/admin-get-all-projects');
-    //const res = await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/get-all-projects');
+    //const res = await fetch('http://localhost:4000/api/admin-get-all-projects');
+    const res = await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/get-all-projects');
     const data = await res.json();
     return data.projects || [];
   }
 
 
   async function fetchPhases(projectID) {
-    const res = await fetch('http://localhost:4000/api/get-all-phases', {
-    //await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/projectdecision', {
+    //const res = await fetch('http://localhost:4000/api/get-all-phases', {
+    const res = await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/get-all-phases', {
         method: 'POST',
         headers: {'content-Type' : 'application/json'},
         body: JSON.stringify({ projectID })
@@ -30,8 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   async function protiusReview ( projectID, decision, apprvr ) {
 
-    await fetch('http://localhost:4000/api/project-decision', {
-    //await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/projectdecision', {
+    //await fetch('http://localhost:4000/api/project-decision', {
+    await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/project-decision', {
         method: 'POST',
         headers: {'content-Type' : 'application/json'},
         body: JSON.stringify({ projectID, decision, apprvr })

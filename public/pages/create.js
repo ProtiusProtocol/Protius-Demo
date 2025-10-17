@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', () =>{
     // Function to send user towards project creation
     function handleProjectCreation( owner, newName, newDeveloper, finance, devContribute ){
 
-        //fetch('http://localhost:4000/api/createproject', {
-        fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/createproject', {
+        //fetch('http://localhost:4000/api/create-project', {
+        fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/create-project', {
             method: 'POST',
             headers: {'content-type': 'application/json'},
             body: JSON.stringify({ owner, newName, newDeveloper, finance, devContribute })
