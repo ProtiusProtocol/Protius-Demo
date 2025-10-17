@@ -76,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 import { ethers } from "https://cdn.jsdelivr.net/npm/ethers@6.10.0/dist/ethers.min.js";
 
 document.addEventListener('DOMContentLoaded', () => {
+  const waitMessage = document.getElementById('please-wait-messsage');
   const stakeInput = document.getElementById('tokenInput');
   const submitButton = document.getElementById('submit-stake-button');
   const cancelButton = document.getElementById('cancelStakeButton');
@@ -438,6 +439,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   submitButton.addEventListener("click", () => {
     console.log('Button clicked on stake')
+    waitMessage.textContent = 'Please wait while your stake is processed. You will receive prompts from your wallet.'
     stakeTokens(stakeInput.value)
     
   });
