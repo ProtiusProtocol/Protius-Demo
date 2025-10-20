@@ -17,7 +17,7 @@ const { insertNewEvent } = require('./src/eventsRouter');
 //const { startChecking } = require("./src/poller");
 const http = require("http");
 const socketIO = require("socket.io");
-const {pool} = require('./src/initializeDB');
+const pool = require('./src/initializeDB');
 
 //const allowedOrigins = ['http://localhost:4000'];
 const app = express();
