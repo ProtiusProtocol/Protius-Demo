@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   async function fetchProjects() {
     //const res = await fetch('http://localhost:4000/api/admin-get-all-projects');
-    const res = await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/get-all-projects');
+    const res = await fetch('https://protius-demo-v1-3ec4758d01ce.herokuapp.com/api/admin-get-all-projects');
     const data = await res.json();
     return data.projects || [];
   }
