@@ -19,17 +19,23 @@ const http = require("http");
 const socketIO = require("socket.io");
 const pool = require('./src/initializeDB');
 
-//const allowedOrigins = ['http://localhost:4000'];
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
 const PORT = process.env.PORT || 4000;
 //const PORT = 4000;
+//const allowedOrigins = ['http://localhost:4000'];
+
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public'))); 
 app.use('/smartcontracts', express.static(path.join(__dirname, 'smartcontracts')));
-//app.use(cors({ origin: allowedOrigins}));
+/*
+app.use(cors({ 
+  origin: allowedOrigins,
+  credentials: true,
+}));
+*/
 
 //Web socket
 io.on('connection', socket => {
@@ -895,6 +901,63 @@ app.post('/api/create-project', async (req, res) => {
     }
     */
 })
+
+
+app.post('/api/create-project', async (req, res) => {
+    const {
+        owner,
+        newName,
+        newDeveloper,
+        finance,
+        devContribute,
+        location,
+        distance,
+        capacity,
+        landOwnership,
+        landZoning,
+        debtEquity,
+        equity,
+        cod,
+        oeContracted
+    } = req.body;
+
+    if (
+        !owner ||
+        !newName ||
+        !newDeveloper ||
+        !finance ||
+        !devContribute
+    ) {
+        return res.status(400).json({ error: 'Missing required fields' });
+    }
+
+    const newProject = createProject.createNewProject(
+        owner,
+        newName,
+        newDeveloper,
+        finance,
+        devContribute,
+        location,
+        distance,
+        capacity,
+        landOwnership,
+        landZoning,
+        debtEquity,
+        equity,
+        cod,
+        oeContracted
+    );
+
+    try {
+        console.log(newProject);
+        await insertProjectAndPhases(newProject);
+        res.status(201).json({ message: 'Project created successfully', projectID: newProject.projectID });
+    } catch (err) {
+        console.error('Project creation failed:', err);
+        res.status(500).json({ error: 'Failed to create project' });
+    }
+});
+
 
 
 // POST request to retreive projects from database for a specific user
